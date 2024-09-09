@@ -6,7 +6,7 @@ class Register(models.Model):
     Email = models.EmailField(unique=True)
     name = models.TextField()
     phonenumber = models.IntegerField()
-    password = models.IntegerField()
+    password = models.TextField()
     location= models.TextField()
 
     def _str_(self):
