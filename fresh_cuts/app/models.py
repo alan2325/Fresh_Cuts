@@ -26,7 +26,6 @@ class Product(models.Model):
     name = models.TextField()
     discription = models.TextField()
     price = models.IntegerField()
-    category = models.TextField()
     quantity = models.IntegerField()
     offerprice = models.IntegerField()
     image = models.FileField()

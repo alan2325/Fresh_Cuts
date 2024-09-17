@@ -120,11 +120,11 @@ def addpro(req):
         name = req.POST['name']
         discription = req.POST['discription']
         price = req.POST['price']
-        category = req.POST['category']
+        
         quantity = req.POST['quantity']
         offerprice = req.POST['offerprice']
         image = req.FILES['image']
-        data=Product.objects.create(name=name,discription=discription,price=price,category=category,quantity=quantity,offerprice=offerprice,image=image)
+        data=Product.objects.create(name=name,discription=discription,price=price,quantity=quantity,offerprice=offerprice,image=image)
         data.save()
         return redirect(viewpro)
     return render(req,'addpro.html')
