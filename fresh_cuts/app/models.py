@@ -46,26 +46,46 @@ class cart(models.Model):
         return self.quantity * self.product.price
     
 class Buy(models.Model):
-    productid = models.IntegerField()
-    user = models.TextField()
-    date_of_buying = models.IntegerField()
-    payment_status = models.IntegerField()
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    user = models.ForeignKey(Register,on_delete=models.CASCADE)
+    date_of_buying = models.TextField()
+    payment_status = models.BooleanField(default=False)
     quantity = models.IntegerField()
     price = models.IntegerField()
-    delivery_not = models.TextField()
+    del_boy=models.BooleanField(default=False)
+
     
-    def _str_(self):
-        return self.user
+    def __str__(self):
+        return self.product.name
     
 class Product_quantity(models.Model):
     productid = models.IntegerField()
     shopid = models.IntegerField()
     quantity = models.IntegerField()
 
-    def _str_(self):
+    def __str__(self):
         return self.productid
     
 
 class Payment_status(models.Model):
         transactionid = models.IntegerField()
         amount = models.IntegerField()
+
+class delivery(models.Model):
+    rout = models.TextField()
+    Email =  models.EmailField(unique=True)
+    password = models.IntegerField()
+    name = models.TextField()
+    phonenumber = models.IntegerField()
+    def __str__(self):
+        return self.name
+
+class delpro(models.Model):
+    delivery=models.ForeignKey(delivery,on_delete=models.CASCADE)
+    buy=models.ForeignKey(Buy,on_delete=models.CASCADE)
+    status=models.BooleanField(default=False)
+    date=models.TextField(null=True) 
+
+
+    
+
