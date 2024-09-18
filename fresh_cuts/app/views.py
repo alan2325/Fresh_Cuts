@@ -260,3 +260,8 @@ def delregister(req):
 def viewshop(req):
     data=Shopreg.objects.all()
     return render(req,'viewshop.html',{'data':data})
+
+
+def aboutus(req):
+    
+    return render(req,'aboutus.html')

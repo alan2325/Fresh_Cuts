@@ -25,6 +25,8 @@ urlpatterns = [
     path('orderdetails',views.orderdetails),
     path('delregister',views.delregister),
     path('viewshop',views.viewshop),
+    path('aboutus',views.aboutus),
+
     
 
 ]
