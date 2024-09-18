@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +14,7 @@
             background-color: #f2f2f2;
         }
         /* Navbar styling */
-        .navbar {
+        /* .navbar {
             background-color: #333;
             overflow: hidden;
         }
@@ -29,7 +31,7 @@
         }
         .navbar-right {
             float: right;
-        }
+        } */
 
         /* Order details container */
         .order-container {
@@ -83,7 +85,34 @@
 <body>
 
     <!-- Navbar -->
-    <div class="navbar">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a href="#" class="logo">
+            <img src="static/images (1).png" alt="logo">
+          </a>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="../userhome">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../userviewproduct">view product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../addtocart/{{i.pk}}">Cart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../logout">logout</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="text" placeholder="Search">
+              <button class="btn btn-primary" type="button">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <!-- <div class="navbar">
         <a href="../userhome">Home</a>
         <a href="../userviewproduct">Products</a>
         <a href="../addtocart/{{i.pk}}">Cart</a>
@@ -93,7 +122,7 @@
             <a href="../userprofile">My Account</a>
             <a href="../logout">Logout</a>
         </div>
-    </div>
+    </div> -->
 
     <!-- Order Details Container -->
     {% for i in data %}

@@ -37,15 +37,41 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body>
-
-<ul>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a href="#" class="logo">
+        <img src="static/images (1).png" alt="logo">
+      </a>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../userhome">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../userviewproduct">view product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../addtocart">Add to Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout">logout</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-primary" type="button">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+<!-- <ul>
   <li><a class="active" href="../userhome">Home</a></li>
   <li><a href="../userviewproduct">product</a></li>
   <li><a href="../cart">Add to Cart</a></li>
   <li><a href="../logout">logout</a></li>
-</ul>
+</ul> -->
 
-<div style="padding:10px;margin-top:15px;background-color:#82dcd1;">
+<div style="padding:10px;margin-top:15px;background-color:#c7360e;">
   <div class="card">
     <img src="{{data.image.url}}" alt="" style="width:500px">
     <h1>{{data.name}}</h1>
@@ -58,7 +84,7 @@ li a:hover:not(.active) {
       <a href="#"><i class="fa fa-facebook"></i></a> 
     </div> -->
     <p>
-      <a href="../buy">Buy</p>
+      <a href="../buynow">Buy</p>
   </div>
 </div>
 
