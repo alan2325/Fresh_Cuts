@@ -191,6 +191,37 @@
             padding: 20px;
             background-color: #f4f4f4;
         }
+        
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
         header {
             text-align: center;
             margin-bottom: 20px;
@@ -215,7 +246,16 @@
     </style>
 </head>
 <body>
-
+    <ul>
+        <li>
+        <a href="#" class="logo">
+            <img src="static/images (1).png" alt="logo" width="70px">
+          </a></li>
+        <li><a class="active" href="../userhome">Home</a></li>
+        <li><a href="../userviewproduct">products</a></li>
+        <li><a href="../contact">Contact</a></li>
+        <li><a href="../logout">logout</a></li>
+      </ul>
 <header>
     <h1>About Us</h1>
 </header>
@@ -239,11 +279,11 @@
 <section>
     <h2>Contact Us</h2>
     <p>If you have any questions or inquiries, feel free to reach out to us:</p>
-    <ul>
-        <li>Email: info@example.com</li>
-        <li>Phone: (123) 456-7890</li>
-        <li>Address: 123 Main Street, City, Country</li>
-    </ul>
+    <ol>
+        <li>Email: info@example.com</li><br>
+        <li>Phone: (123) 456-7890</li><br>
+        <li>Address: 123 Main Street, City, Country</li><br>
+    </ol>
 </section>
 
 <footer>
