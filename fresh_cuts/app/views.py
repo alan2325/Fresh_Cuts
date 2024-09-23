@@ -265,3 +265,11 @@ def viewshop(req):
 def aboutus(req):
     
     return render(req,'aboutus.html')
+
+def contact(req):
+    
+    return render(req,'contact.html')
+
+def service(req):
+    
+    return render(req,'service.html')

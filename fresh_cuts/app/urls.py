@@ -26,6 +26,10 @@ urlpatterns = [
     path('delregister',views.delregister),
     path('viewshop',views.viewshop),
     path('aboutus',views.aboutus),
+    path('contact',views.contact),
+    path('service',views.service),
+
+
 
     
 
