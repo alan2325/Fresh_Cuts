@@ -18,6 +18,8 @@ class Shopreg(models.Model):
     phonenumber = models.IntegerField()
     password = models.IntegerField()
     location= models.TextField()
+    # image = models.FileField()
+
 
     def _str_(self):
         return self.name

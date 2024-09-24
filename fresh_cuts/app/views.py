@@ -27,22 +27,22 @@ def login(req):
     
 
     if req.method=='POST':
-        email=req.POST['Email']
+        Email=req.POST['Email']
         password=req.POST['password']
         try:
-            data=Register.objects.get(Email=email,password=password)
+            data=Register.objects.get(Email=Email,password=password)
             req.session['user']=data.Email
             return redirect(userhome)
         except:
-            admin=auth.authenticate(username=email,password=password)
+            admin=auth.authenticate(username=Email,password=password)
             if admin is not None:
                 auth.login(req,admin)
-                req.session['admin']=email
+                req.session['admin']=Email
 
                 return redirect(adminhome)
             
             else:
-                data=Shopreg.objects.get(Email=email,password=password)
+                data=Shopreg.objects.get(Email=Email,password=password)
                 req.session['shop']=data.Email
 
                 return redirect(shophome)
