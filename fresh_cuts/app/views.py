@@ -29,27 +29,30 @@ def login(req):
     if req.method=='POST':
         Email=req.POST['Email']
         password=req.POST['password']
-        # try:
-        # data=Register.objects.get(Email=Email,password=password)
-        # req.session['user']=data.Email
-        # return redirect(userhome)
-        # except:
-        #     admin=auth.authenticate(username=Email,password=password)
-        #     if admin is not None:
-        #         auth.login(req,admin)
-        #         req.session['admin']=Email
+        try:
+            data=Register.objects.get(Email=Email,password=password)
+            req.session['user']=data.Email
+            return redirect(userhome)
+        except:
+            admin=auth.authenticate(username=Email,password=password)
+            if admin is not None:
+                auth.login(req,admin)
+                req.session['admin']=Email
 
-        #         return redirect(adminhome)
+                return redirect(adminhome)
             
-        #     else:
-        data=Shopreg.objects.get(Email=Email,password=password)
-        req.session['shop']=data.Email
+            else:
+                try:
+                    data=Shopreg.objects.get(Email=Email,password=password)
+                    req.session['shop']=data.Email
 
-        return redirect(shophome)
+                    return redirect(shophome)
+                except:
+                    messages.warning(req, "INVALID INPUT !")
+                    
 
 
-
-        messages.warning(req, "INVALID INPUT !")
+        # messages.warning(req, "INVALID INPUT !")
     return render(req,'login.html')
 
 
