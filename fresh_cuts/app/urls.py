@@ -8,6 +8,7 @@ urlpatterns = [
     path('userhome',views.userhome),
     path('adminhome',views.adminhome),
     path('shophome',views.shophome),
+    path('deliveryhome',views.deliveryhome),
     path('addpro',views.addpro),
     path('viewpro',views.viewpro),
     path('edit/<int:id>',views.edit),
@@ -28,6 +29,8 @@ urlpatterns = [
     path('aboutus',views.aboutus),
     path('contact',views.contact),
     path('service',views.service),
+    path('bookinghistry',views.bookinghistry),
+
 
 
 

@@ -118,6 +118,11 @@ def shophome(req):
     
     return render(req,'shophome.html')
 
+
+def deliveryhome(req):
+    
+    return render(req,'deliveryhome.html')
+
 def addpro(req):
     if req.method=='POST':
         name = req.POST['name']
@@ -276,3 +281,9 @@ def contact(req):
 def service(req):
     
     return render(req,'service.html')
+
+def bookinghistry(req):
+    data=Buy.objects.all()
+    data1=delivery.objects.all()
+    return render(req,'bookinghistry.html',{'data':data,'data1':data1})
+
