@@ -141,8 +141,26 @@ def addpro(req):
  
     
 def viewpro(req):
+    # if 'user' in req.session:
+    #     data=cart.objects.filter(user=get_usr(req))
     data=Product.objects.all()
-    return render(req,'viewpro.html',{'data':data})    
+    return render(req,'viewpro.html',{'data':data}) 
+
+# def shop_view(req,id):
+#     if 'shop' in req.session:
+#         product=Product.objects.get(pk=id)
+#         user=get_shop(req)
+#         qty=1
+#         try:
+#             dtls=cart.objects.get(product=product,user=user)
+#             dtls.quantity+=1
+#             dtls.save()
+#         except:
+#             data=cart.objects.create(product=product,user=user,quantity=qty)
+#             data.save()
+#         return redirect(viewpro)
+#     else:
+#         return redirect(login)   
 
 def edit(req,id):
     data=Product.objects.get(pk=id)

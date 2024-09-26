@@ -11,6 +11,7 @@ urlpatterns = [
     path('deliveryhome',views.deliveryhome),
     path('addpro',views.addpro),
     path('viewpro',views.viewpro),
+    # path('shop_view/<int:id>',views.shop_view),
     path('edit/<int:id>',views.edit),
     path('delete/<int:id>',views.delete),
     path('profile',views.profile),
