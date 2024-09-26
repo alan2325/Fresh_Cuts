@@ -168,12 +168,12 @@ def profile(req):
     else:
         return redirect(login)
     
-def shops(req):
-    if 'shop' in req.session:
-        # data=Register.objects.get(Email=req.session['user'])
-        return render(req,'viewpro.html',{'data':get_shop(req)})
-    else:
-        return redirect(shophome)
+# def shops(req):
+#     if 'shop' in req.session:
+#         # data=Register.objects.get(Email=req.session['user'])
+#         return render(req,'viewpro.html',{'data':get_shop(req)})
+#     else:
+#         return redirect(shophome)
     
 
 ###profile update

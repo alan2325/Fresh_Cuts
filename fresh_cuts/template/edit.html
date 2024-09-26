@@ -8,33 +8,41 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+      
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
           <a href="#" class="logo">
-            <img src="static/images (1).png" alt="logo">
+            <img src="static/images (1).png" alt="logo" width="70px">
           </a>
-          <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="../profile">profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../userviewproduct">view product</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../orderdetails">orderdetails</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../logout">logout</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="text" placeholder="Search">
-              <button class="btn btn-primary" type="button">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+          <li class="nav-item"></li>
+            <a class="nav-link" href="../shophome">home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../viewpro">view product</a>
+          </li>
+          <!-- <li class="nav-item"></li>
+            <a class="nav-link" href="../viewshop">view shop</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="../addpro">add product</a>
+          </li>
+          <li class="nav-item"></li>
+            <a class="nav-link" href="../bookinghistry">bookinghistory</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../logout">logout</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-primary" type="button">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
     <form action="" method="post">
         {% csrf_token %}
         <label for="">NAME</label>
