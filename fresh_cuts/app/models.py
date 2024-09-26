@@ -25,6 +25,7 @@ class Shopreg(models.Model):
         return self.name
     
 class Product(models.Model):
+    shop = models.ForeignKey(Shopreg,on_delete=models.CASCADE)
     name = models.TextField()
     discription = models.TextField()
     price = models.IntegerField()
@@ -33,7 +34,7 @@ class Product(models.Model):
     image = models.FileField()
 
     def _str_(self):
-        return self.name
+        return self.name +' '+self.shop.name
     
 class cart(models.Model):
     user = models.ForeignKey(Register,on_delete=models.CASCADE)

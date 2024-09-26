@@ -138,6 +138,7 @@ def addpro(req):
         return redirect(viewpro)
     return render(req,'addpro.html')
 
+ 
     
 def viewpro(req):
     data=Product.objects.all()
