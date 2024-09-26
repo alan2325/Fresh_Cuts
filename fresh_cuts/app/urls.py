@@ -14,6 +14,7 @@ urlpatterns = [
     path('edit/<int:id>',views.edit),
     path('delete/<int:id>',views.delete),
     path('profile',views.profile),
+    # path('viewpro',views.shops),
     path('upload',views.upload),
     path('userviewproduct',views.userviewproduct),
     path('prodetails/<int:id>',views.prodetails),

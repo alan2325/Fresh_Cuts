@@ -105,7 +105,8 @@ def shopregister(req):
 
 def userhome(req):
     if 'user' in req.session:
-        return render(req,'userhome.html')
+        data=Product.objects.all()
+        return render(req,'userhome.html',{'data':data})
     else:
         return redirect(login)
 
@@ -166,6 +167,13 @@ def profile(req):
         return render(req,'userprofile.html',{'data':get_usr(req)})
     else:
         return redirect(login)
+    
+def shops(req):
+    if 'shop' in req.session:
+        # data=Register.objects.get(Email=req.session['user'])
+        return render(req,'viewpro.html',{'data':get_shop(req)})
+    else:
+        return redirect(shophome)
     
 
 ###profile update
