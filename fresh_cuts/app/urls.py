@@ -19,6 +19,7 @@ urlpatterns = [
     path('upload',views.upload),
     path('userviewproduct',views.userviewproduct),
     path('prodetails/<int:id>',views.prodetails),
+    path('shopprodetails/<int:id>',views.shopprodetails),
     path('addtocart/<int:id>',views.user_cart),
     path('user_view_cart',views.user_view_cart),
     path('qty_incri/<int:id>',views.qty_incri),

@@ -232,6 +232,11 @@ def prodetails(req,id):
     return render(req,'prodetails.html',{'data':data})
 
 
+def shopprodetails(req,id):
+    data=Product.objects.get(pk=id)
+    return render(req,'shopprodetails.html',{'data':data})
+
+
 def user_cart(req,id):
     if 'user' in req.session:
         product=Product.objects.get(pk=id)
