@@ -14,6 +14,9 @@ def get_shop(req):
     data=Shopreg.objects.get(Email=req.session['shop'])
     return data
 
+def get_product(req):
+    data=Product.objects.get(shop=req.session['product'])
+    return data
 
 
 
@@ -155,11 +158,10 @@ def addpro(req):
         name = req.POST['name']
         discription = req.POST['discription']
         price = req.POST['price']
-        
         quantity = req.POST['quantity']
         offerprice = req.POST['offerprice']
         image = req.FILES['image']
-        data=Product.objects.create(name=name,discription=discription,price=price,quantity=quantity,offerprice=offerprice,image=image)
+        data=Product.objects.create(name=name,discription=discription,price=price,quantity=quantity,offerprice=offerprice,image=image,shop=get_shop(req))
         data.save()
         return redirect(viewpro)
     return render(req,'addpro.html')
@@ -168,25 +170,10 @@ def addpro(req):
     
 def viewpro(req):
     if 'shop' in req.session:
-        data=Product.objects.get(shop=get_shop(req))
+        data=Product.objects.filter(shop=get_shop(req))
     # data=Product.objects.all()
         return render(req,'viewpro.html',{'data':data}) 
     
-# def shop_view(req,id):
-#     if 'shop' in req.session:
-#         product=Product.objects.get(pk=id)
-#         user=get_shop(req)
-#         qty=1
-#         try:
-#             dtls=cart.objects.get(product=product,user=user)
-#             dtls.quantity+=1
-#             dtls.save()
-#         except:
-#             data=cart.objects.create(product=product,user=user,quantity=qty)
-#             data.save()
-#         return redirect(viewpro)
-#     else:
-#         return redirect(login)   
 
 def edit(req,id):
     data=Product.objects.get(pk=id)
@@ -318,7 +305,12 @@ def service(req):
     return render(req,'service.html')
 
 def bookinghistry(req):
-    data=Buy.objects.all()
-    data1=delivery.objects.all()
-    return render(req,'bookinghistry.html',{'data':data,'data1':data1})
+    #  if 'shop' in req.session:
+    l=[]
+    data=Product.objects.filter(shop=get_shop(req))
+    for i in data:
+        data1=Buy.objects.filter(product=i)
+        l.append(data1)
+    # data1=delivery.objects.all()
+    return render(req,'bookinghistry.html',{'data':l})
 
