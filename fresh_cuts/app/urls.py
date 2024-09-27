@@ -8,7 +8,7 @@ urlpatterns = [
     path('userhome',views.userhome),
     path('adminhome',views.adminhome),
     path('shophome',views.shophome),
-    path('deliveryhome',views.deliveryhome),
+    path('deliveryhome',views.deliverys),
     path('addpro',views.addpro),
     path('viewpro',views.viewpro),
     # path('shop_view/<int:id>',views.shop_view),

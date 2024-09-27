@@ -11,7 +11,7 @@ def get_usr(req):
 
 
 def get_shop(req):
-    data=Product.objects.get(category=req.session['shop'])
+    data=Shopreg.objects.get(Email=req.session['shop'])
     return data
 
 
@@ -24,6 +24,8 @@ def login(req):
         return redirect(adminhome)
     if 'shop' in req.session:
         return redirect(shophome)
+    if 'deliveryss' in req.session:
+        return redirect(deliverys)
     
 
     if req.method=='POST':
@@ -48,6 +50,10 @@ def login(req):
 
                     return redirect(shophome)
                 except:
+                    data=delivery.objects.get(Email=Email,password=password)
+                    req.session['shop']=data.Email
+                    return redirect(deliverys)
+
                     messages.warning(req, "INVALID INPUT !")
                     
 
@@ -65,6 +71,8 @@ def logout(req):
         del req.session['admin']
     if 'shop' in req.session:
         del req.session['shop']
+    if 'deliveryss' in req.session:
+        del req.session['deliveryss']
     return redirect(login)
 
 
@@ -102,6 +110,24 @@ def shopregister(req):
     return render(req,'shopregister.html')
     print(shopregister)
 
+def delregister(req):
+
+    if req.method=='POST':
+        name1=req.POST['name']
+        email2=req.POST['Email']
+        phonenumber3=req.POST['phonenumber']
+        location4=req.POST['rout']
+        password5=req.POST['password']
+    
+        try:
+            data=delivery.objects.create(name=name1,Email=email2,phonenumber=phonenumber3,rout=location4,password=password5)
+            data.save()
+            return redirect(login)
+        except:
+            messages.warning(req, "Email Already Exits , Try Another Email.")
+    return render(req,'deliveryreg.html')
+    print(delregister)
+
 
 def userhome(req):
     if 'user' in req.session:
@@ -120,7 +146,7 @@ def shophome(req):
     return render(req,'shophome.html')
 
 
-def deliveryhome(req):
+def deliverys(req):
     
     return render(req,'deliveryhome.html')
 
@@ -141,11 +167,11 @@ def addpro(req):
  
     
 def viewpro(req):
-    # if 'user' in req.session:
-    #     data=cart.objects.filter(user=get_usr(req))
-    data=Product.objects.all()
-    return render(req,'viewpro.html',{'data':data}) 
-
+    if 'shop' in req.session:
+        data=Product.objects.get(shop=get_shop(req))
+    # data=Product.objects.all()
+        return render(req,'viewpro.html',{'data':data}) 
+    
 # def shop_view(req,id):
 #     if 'shop' in req.session:
 #         product=Product.objects.get(pk=id)
@@ -272,24 +298,6 @@ def orderdetails(req):
     data=Buy.objects.filter(user=get_usr(req))
     return render(req,'orderdetails.html',{'data':data})
     
-def delregister(req):
-
-    if req.method=='POST':
-        name1=req.POST['name']
-        email2=req.POST['Email']
-        phonenumber3=req.POST['phonenumber']
-        location4=req.POST['rout']
-        password5=req.POST['password']
-    
-        try:
-            data=delivery.objects.create(name=name1,Email=email2,phonenumber=phonenumber3,rout=location4,password=password5)
-            data.save()
-            return redirect(login)
-        except:
-            messages.warning(req, "Email Already Exits , Try Another Email.")
-    return render(req,'deliveryreg.html')
-    print(delregister)
-
 
 
 def viewshop(req):
