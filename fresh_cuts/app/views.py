@@ -311,6 +311,7 @@ def bookinghistry(req):
     for i in data:
         data1=Buy.objects.filter(product=i)
         l.append(data1)
+    print(l)
     # data1=delivery.objects.all()
     return render(req,'bookinghistry.html',{'data':l})
 
