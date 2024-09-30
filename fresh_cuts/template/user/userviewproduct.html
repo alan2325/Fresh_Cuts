@@ -80,12 +80,22 @@ h3{
     transform: scale(1.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-.pro{
-  color:black;
-  border:1px solid rgb(41, 103, 196);
-  margin:20px;
-  text-align: center;
-}
+.pro {
+            display: inline-block;
+            padding: 10px 15px;
+            color: blue; /* Blue text */
+            background-color: white; /* White background */
+            border: 1px solid rgb(41, 103, 196);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+
+        .pro:hover {
+            color: white; /* White text on hover */
+            background-color: rgb(41, 103, 196); /* Blue background on hover */
+        } 
 .nav-link:hover{
         color: rgb(222, 247, 34);
     }
