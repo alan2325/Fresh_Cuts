@@ -36,7 +36,7 @@
           <a class="nav-link" href="../contact">contact</a>
         </li>
         <li class="nav-item"></li>
-          <a class="nav-link" href="../addtocart">My Cart</a>
+          <a class="nav-link" href="../user_view_cart">My Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../logout">logout</a>
@@ -81,7 +81,7 @@
              <img src="{{i.product.image.url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;height: 150px;">
              <h5 class="my-3">Product name : {{i.product.name}}</h5>
              <p class="text-muted mb-1">price : {{i.product.price}}</p>
-             <a href="../qty_incri/{{i.pk}}" class="btn">+</a><p class="text-muted mb-4">{{i.quantity}}</p>  
+             <a href="../qty_incri/{{i.pk}}" class="btn">+</a><p class="text-muted mb-4">{{i.quantity}}kg</p>  
              <a href="../qty_decri/{{i.pk}}" class="btn">-</a>
              
            

@@ -255,7 +255,7 @@ html, body {
           <a class="nav-link" href="../contact">Contact</a>
         </li>
         <li class="nav-item"></li>
-          <a class="nav-link" href="../addtocart">My Cart</a>
+          <a class="nav-link" href="../user_view_cart">My Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../logout">Logout</a>
@@ -320,6 +320,7 @@ html, body {
             </h5>
             <div class="cable-config">
               <p>price : {{data.price}}</p>
+              <p>quantity : {{data.quantity}}kg</p>
               <h4>Offer price : {{data.offerprice}}</h4>
               <!-- < <span>Cable configuration</span> -->
        
@@ -337,8 +338,8 @@ html, body {
           <div class="product-price">
             
             <!-- <span>Offer price : {{data.offerprice}}</span> -->
-            <a href="../buys/{{i.pk}}" class="cart-btn">Buy now</a>
-            <a href="../cart/{{i.pk}}" class="cart-btn">Add to cart</a>
+            <a href="../buynow/{{i.pk}}" class="cart-btn">Buy now</a>
+            <a href="../user_view_cart" class="cart-btn">Add to cart</a>
           </div>
         </div>
       </main>
