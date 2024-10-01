@@ -26,7 +26,7 @@ def login(req):
     if 'admin' in req.session:
         return redirect(adminhome)
     if 'shop' in req.session:
-        return redirect(shophome)
+        return redirect(viewpro)
     if 'deliveryss' in req.session:
         return redirect(deliverys)
     
@@ -51,7 +51,7 @@ def login(req):
                     data=Shopreg.objects.get(Email=Email,password=password)
                     req.session['shop']=data.Email
 
-                    return redirect(shophome)
+                    return redirect(viewpro)
                 except Shopreg.DoesNotExist:
                     # data=delivery.objects.get(Email=Email,password=password)
                     # req.session['shop']=data.Email
@@ -144,9 +144,9 @@ def adminhome(req):
     return render(req,'admin/adminhome.html')
 
 
-def shophome(req):
+# def shophome(req):
     
-    return render(req,'shop/viewpro.html')
+#     return render(req,'shop/viewpro.html')
 
 
 def deliverys(req):
@@ -312,7 +312,7 @@ def orderdetails(req):
 
 def viewshop(req):
     data=Shopreg.objects.all()
-    return render(req,'sdmin/viewshop.html',{'data':data})
+    return render(req,'admin/viewshop.html',{'data':data})
 
 
 def aboutus(req):
