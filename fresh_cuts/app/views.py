@@ -57,7 +57,7 @@ def login(req):
                     # req.session['shop']=data.Email
                     # return redirect(deliverys)
 
-                    messages.warning(req, "INVALID INPUT !")
+                    messages.warning(req, "INVALID INPUT !  ")
                     
 
 
