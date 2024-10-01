@@ -38,7 +38,7 @@ def login(req):
             data=Register.objects.get(Email=Email,password=password)
             req.session['user']=data.Email
             return redirect(userhome)
-        except:
+        except Register.DoesNotExist:
             admin=auth.authenticate(username=Email,password=password)
             if admin is not None:
                 auth.login(req,admin)
@@ -52,10 +52,10 @@ def login(req):
                     req.session['shop']=data.Email
 
                     return redirect(shophome)
-                except:
-                    data=delivery.objects.get(Email=Email,password=password)
-                    req.session['shop']=data.Email
-                    return redirect(deliverys)
+                except Shopreg.DoesNotExist:
+                    # data=delivery.objects.get(Email=Email,password=password)
+                    # req.session['shop']=data.Email
+                    # return redirect(deliverys)
 
                     messages.warning(req, "INVALID INPUT !")
                     
@@ -146,7 +146,7 @@ def adminhome(req):
 
 def shophome(req):
     
-    return render(req,'shop/shophome.html')
+    return render(req,'shop/viewpro.html')
 
 
 def deliverys(req):
