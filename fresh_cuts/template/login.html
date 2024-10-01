@@ -46,11 +46,11 @@
 }
 
 .login-container button {
-    width: 50%;
+    width: 90%;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #3498db;
+    background-color: #3a98e0;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -58,9 +58,19 @@
 }
 
 .login-container button:hover {
-    background-color: #2980b9;
+    background-color: #e3e9ed;
 }
 
+.alert .btn-close {
+        margin-left: 15px; /* Adjust as needed */
+        outline: none; /* Remove the blue box */
+    }
+
+    /* You can also add more padding inside the alert box */
+    .alert {
+        padding-right: 2.5rem; /* Ensure enough padding for close button */
+    }
+    
     </style>
 </head>
 <body>
@@ -71,9 +81,9 @@
             <h2>Login</h2>
           {% if messages %}
           {% for message in messages %}
-          <div class="alert alert-warning   alert-dismissible">
-            <button type="button" class="btn-close"  data-bs-dismiss="alert"></button>
-            {{ message }}
+          <div class="alert alert-warning   alert-dismissible " style="display: flex; justify-content: space-between; align-items: right;">
+            <button type="button" class="btn-close" style="margin-left: 10px;" data-bs-dismiss="alert"></button>
+            <span>{{ message }}</span>
           </div>
           {% endfor %}
           {% endif %}
