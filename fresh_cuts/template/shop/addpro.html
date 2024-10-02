@@ -8,29 +8,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
-<!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="../shophome">home</a>
-          </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="../viewpro">view product</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">booking histiry</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Search">
-        <button class="btn btn-primary" type="button">Search</button>
-      </form>
-    </div>
-  </div>
-</nav> -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
     
@@ -42,9 +19,6 @@
         <li class="nav-item">
           <a class="nav-link" href="../viewpro">view product</a>
         </li>
-        <!-- <li class="nav-item"></li>
-          <a class="nav-link" href="../viewshop">view shop</a>
-        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="../addpro">add product</a>
         </li>
@@ -68,15 +42,6 @@
   {% csrf_token %}
   <div class="container">
     <h1>ADD PRODUCT</h1>
-    
-
-<!--     
-    <ul class="messages">
-       
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-     
-    </ul> -->
-  
     {% if messages %}
     {% for message in messages %}
     <div class="alert alert-warning alert-dismissible">
@@ -86,30 +51,39 @@
     {% endfor %}
     {% endif %}
 
-    <label for="name"><b>Name</b></label>
-    <input type="text" placeholder="Enter product name" name="name" id="name" required><br><br>
+    <table class="table">
+      <tr>
 
-    <label for="discription"><b>discription</b></label>
-    <input type="text" placeholder="Enter discription" name="discription" id="discription" required><br><br>
+    <td><label for="name"><b>Name</b></label></td>
+   <td> <input type="text" placeholder="Enter product name" name="name" id="name" required><br><br></td>
+</tr>
 
-    <label for="price"><b>price </b></label>
-    <input type="number" placeholder="Enter price number" name="price" id="price" required><br><br>
+   <tr>
+   <td> <label for="discription"><b>discription</b></label></td>
+   <td> <input type="text" placeholder="Enter discription" name="discription" id="discription" required><br><br></td>
+</tr>
 
+  <tr>
+    <td><label for="price"><b>price </b></label></td>
+    <td><input type="number" placeholder="Enter price number" name="price" id="price" required><br><br></td>
+</tr>
 
-    <label for="quantity"><b>quantity</b></label>
-    <input type="number" placeholder="Enter quantity" name="quantity" id="quantity" required><br><br>
+<tr>
+    <td><label for="quantity"><b>quantity</b></label></td>
+   <td><input type="number" placeholder="Enter quantity" name="quantity" id="quantity" required><br><br></td>
+</tr>
 
-    <label for="offerprice"><b>offerprice</b></label>
-    <input type="number" placeholder="Enter offerprice" name="offerprice" id="offerprice" required><br><br>
+<tr>
+    <td><label for="offerprice"><b>offerprice</b></label></td>
+    <td><input type="number" placeholder="Enter offerprice" name="offerprice" id="offerprice" required><br><br></td>
+</tr>
 
-    <label for="image"><b>image</b></label>
-    <input type="file" placeholder="Enter image" name="image" id="image" required><br><br>
-
-    <!-- <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-    <hr>
-    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
-
+<tr>
+   <td> <label for="image"><b>image</b></label></td>
+    <td><input type="file" placeholder="Enter image" name="image" id="image" required><br><br></td>
+   </tr>
+   </table>
+   
     <button type="submit" class="registerbtn">Register</button>
   </div>
 </form>

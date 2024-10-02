@@ -24,11 +24,18 @@ class Shopreg(models.Model):
     def _str_(self):
         return self.name
     
+class Category(models.Model):
+    name = models.TextField(unique=True)
+
+    def __str__(self):
+        return self.name
+    
 class Product(models.Model):
     shop = models.ForeignKey(Shopreg,on_delete=models.CASCADE)
     name = models.TextField()
     discription = models.TextField()
     price = models.IntegerField()
+    # category = models.ForeignKey(Category, on_delete=models.CASCADE)
     quantity = models.TextField()
     offerprice = models.IntegerField()
     image = models.FileField()

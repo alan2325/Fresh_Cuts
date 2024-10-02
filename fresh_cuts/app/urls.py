@@ -17,6 +17,7 @@ urlpatterns = [
     path('profile',views.profile),
     # path('viewpro',views.shops),
     path('upload',views.upload),
+    path('category/<int:category_id>/', views.products_by_category, name='products_by_category'),
     path('userviewproduct',views.userviewproduct),
     path('prodetails/<int:id>',views.prodetails),
     path('shopprodetails/<int:id>',views.shopprodetails),
