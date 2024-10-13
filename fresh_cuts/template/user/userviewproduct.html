@@ -112,6 +112,28 @@ h3{
   display: inline-block;
 }
 
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+.flex-grow-1 {
+  flex-grow: 1; /* Allow the h3 to take up available space */
+  text-align: center; /* Center the text */
+}
+
+
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -121,24 +143,36 @@ h3{
   z-index: 1;
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  margin-left: 30px;
+.dropdown:hover .dropdown-content {
+  display: block; /* Show dropdown on hover */
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.navbar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.navbar .nav-link {
+  transition: color 0.3s; /* Smooth transition for hover effect */
+}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.navbar .nav-link:hover {
+  color: #ffdd57; /* Change color on hover */
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5); /* Light border for toggler */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Custom color for toggler icon */
+}
+
+
 </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
       <a href="../userhome" class="logo">
         <img src="static/images (1).png" alt="logo" width="70px">
@@ -169,11 +203,13 @@ h3{
           </li>
           <li class="nav-item"></li>
             <a class="nav-link" href="../user_view_cart">My Cart</a>
+          </li> -->
+          <!-- {% for category in categories %}
+          <li>  
+            <a href="{% url 'products_by_category' category.id %}">{{ category.name }}</a>
           </li>
-          {% for category in categories %}
-    <li><a href="{% url 'products_by_category' category.id %}">{{ category.name }}</a></li>
-  {% endfor %}
-          <li class="nav-item">
+          {% endfor %} -->
+          <!-- <li class="nav-item">
             <a class="nav-link" href="../logout">logout</a>
           </li>
         </ul>
@@ -183,22 +219,70 @@ h3{
         </form>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
-<div class="container-fluid mt-3">
-  <h3>Products{{ category.name }}</h3>
-  <div class="dropdown">
-    <button class="dropbtn">category 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">All</a>
-      <a href="#">Birds</a>
-      <a href="#">Animal</a>
-      <a href="#">Fish</a>
 
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+      <a href="../userhome" class="logo">
+        <img src="static/images (1).png" alt="logo" width="70px">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../userviewproduct">View Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../orderdetails">Order Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../aboutus">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../service">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../user_view_cart">My Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout">Logout</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-primary" type="button">Search</button>
+        </form>
+      </div>
     </div>
-  </div> 
+  </nav>
+  
+
+  <div class="container-fluid mt-3 d-flex justify-content-between align-items-center">
+    <div class="dropdown">
+      <button class="dropbtn" aria-haspopup="true">Category 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="#">All</a>
+        <a href="#">Birds</a>
+        <a href="#">Animals</a>
+        <a href="#">Fish</a>
+      </div>
+    </div>
+    <h3 class="text-center flex-grow-1">Products {{ category.name }}</h3>
+  </div>
+  
+  
+  
 
   
 </div>
