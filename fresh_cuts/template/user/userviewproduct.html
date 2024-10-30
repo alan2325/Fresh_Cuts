@@ -32,6 +32,9 @@
 h3{
     text-align: center;
     text-shadow: #301803;
+    margin-bottom: -20px;
+    
+    
 }
 
 .product {
@@ -179,57 +182,6 @@ h3{
 </style>
 </head>
 <body>
-
-  <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a href="../userhome" class="logo">
-        <img src="static/images (1).png" alt="logo" width="70px">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="../profile">profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../userviewproduct">view product</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../orderdetails">orderdetails</a>
-          </li>
-          <li class="nav-item"></li>
-            <a class="nav-link" href="../aboutus">aboutus</a>
-          </li>
-          <li class="nav-item"></li>
-          <a class="nav-link" href="../service">service</a>
-        </li>
-       
-          <li class="nav-item"></li>
-            <a class="nav-link" href="../contact">contact</a>
-          </li>
-          <li class="nav-item"></li>
-            <a class="nav-link" href="../user_view_cart">My Cart</a>
-          </li> -->
-          <!-- {% for category in categories %}
-          <li>  
-            <a href="{% url 'products_by_category' category.id %}">{{ category.name }}</a>
-          </li>
-          {% endfor %} -->
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="../logout">logout</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="text" placeholder="Search">
-          <button class="btn btn-primary" type="button">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav> -->
-
-
   <nav id="nav" class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
       <a href="../userhome" class="logo">
@@ -287,10 +239,12 @@ h3{
         <a href="#">Fish</a>
       </div>
     </div>
-    <h3 class="text-center flex-grow-1">Products {{ category.name }}</h3>
   </div>
   
-  
+  <div>
+    <h3>Products {{ category.name }}</h3>
+
+  </div>
   
 
   
