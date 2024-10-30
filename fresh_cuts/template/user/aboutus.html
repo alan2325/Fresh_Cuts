@@ -11,7 +11,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            /* padding: 20px; */
             background-color: #f4f4f4;
         }
         h1 {
@@ -38,9 +38,9 @@
         color: rgb(222, 247, 34);
         }
         
-.navbar {
+/* .navbar {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-}
+} */
 
 .navbar .nav-link {
   transition: color 0.3s; /* Smooth transition for hover effect */
@@ -57,11 +57,16 @@
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Custom color for toggler icon */
 }
+#nav{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  margin: -20px;
+}
     </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+  <nav id="nav" class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
       <a href="../userhome" class="logo">
         <img src="static/logo_new-removebg-preview.png" alt="logo" width="150px">
@@ -96,10 +101,11 @@
             <a class="nav-link" href="../logout">Logout</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="text" placeholder="Search">
-          <button class="btn btn-primary" type="button">Search</button>
-        </form>
+        
+        <form class="d-flex" method="get" action="{% url 'product_search' %}">
+          <input class="form-control me-2"  type="text" name="query" placeholder="Search for products...">
+          <button class="btn btn-primary" type="submit">Search</button>
+      </form>
       </div>
     </div>
   </nav>
