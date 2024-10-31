@@ -122,6 +122,10 @@ h2{
 
 }
 
+.order-container{
+  max-width: 500px;
+}
+
 .nav-link:hover{
         color: rgb(222, 247, 34);
     }
@@ -320,6 +324,56 @@ h2{
     </div>
   </div>
   {% endfor %}
+  <div>
+    <h1>New History</h1>
+  </div>
+  {% for i in data1 %}
+  <div class="order-container">
+      <!-- <h2>Order Details</h2> -->
+      <div class="order-row">
+          <!-- Left Column: Image -->
+          <div class="order-left">
+              <img src="{{i.product.image.url}}" alt="Product Image" style="width:100%;">
+          </div>
+
+          <!-- Right Column: Order Details -->
+          <div class="order-right">
+              <p><strong>Product name :</strong> {{i.product.name}}</p>
+              <p><strong>Order Date:</strong> {{i.date_of_buying}}</p>
+              <p><strong>Shipping Address:</strong> {{i.user.location}}</p>
+              <p><strong>Payment Method:</strong> Cash on delivery</p>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+
+  <!-- Cart Section -->
+{% if data2 %}
+<div>
+  <h1>Our Cart</h1> <!-- This will only appear if data2 is not empty -->
+  {% for i in data2 %}
+  <div class="card mb-4">
+    <div class="card-body text-center">
+      <img src="{{i.product.image.url}}" alt="Product Image" class="rounded-circle img-fluid" style="width: 150px;height: 150px;">
+      <h5 class="my-3">Product name: {{i.product.name}}</h5>
+      <p class="text-muted mb-1">Price: {{i.product.price}}</p>
+      <a href="../qty_incri/{{i.pk}}" class="btn">+</a>
+      <p class="text-muted mb-4">{{i.quantity}}kg</p>
+      <a href="../qty_decri/{{i.pk}}" class="btn">-</a>
+
+      <div class="d-flex justify-content-center mb-2">
+        <a href="../buynow/{{i.pk}}">Buy now</a>
+        <a href="../deleteitem/{{i.pk}}">Delete</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+
+{% endif %}
+
+
   <div>
       <img src="static/unnamed.webp" width="100%" height="100%">
   </div>

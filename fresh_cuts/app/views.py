@@ -135,7 +135,10 @@ def delregister(req):
 def userhome(req):
     if 'user' in req.session:
         data=Product.objects.all()
-        return render(req,'user/userhome.html',{'data':data})
+        data1=Buy.objects.filter(user=get_usr(req))
+        data2=cart.objects.filter(user=get_usr(req))
+
+        return render(req,'user/userhome.html',{'data':data,'data1':data1,'data2':data2})
     else:
         return redirect(login)
 
