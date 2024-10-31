@@ -12,11 +12,11 @@
     color: #ffffff;
   }
   .container {
-  border: 5px solid black; /* Adds a solid black border */
-  padding: 20px; /* Adds padding inside the container */
+  border: 5px solid black; 
+  padding: 20px;
   border-radius: 10px;
   margin-top: 0%;
-  width: 500px; /* Optional: Adds rounded corners */
+  width: 500px; 
 }
 
 .title {
@@ -74,7 +74,15 @@ button:hover, a:hover {
 #nav{
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   height: 80px;
-  margin: -20px -20px 0px 0;
+  margin: -20px 0 30px 0;
+}
+#srch_btn{
+    margin: 2px 0 15px 0;
+    /* padding: 20px -12px 0px -12px;  */
+}
+#serch{
+  /* margin-top: 10px; */
+  padding: 0px 12px 0px 12px; 
 }
 
 </style>
@@ -119,8 +127,8 @@ button:hover, a:hover {
         </ul>
           
         <form class="d-flex" method="get" action="{% url 'product_search' %}">
-          <input class="form-control me-2"  type="text" name="query" placeholder="Search for products...">
-          <button class="btn btn-primary" type="submit">Search</button>
+          <input id="serch" class="form-control me-2"  type="text" name="query" placeholder="Search for products...">
+          <button id="rch_btn" class="btn btn-primary" type="submit">Search</button>
       </form>
       </div>
     </div>

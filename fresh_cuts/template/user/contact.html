@@ -75,55 +75,19 @@
   height: 80px;
   margin: -20px -20px-20px 0;
 }
+#srch_btn{
+    margin: 2px 0 15px 0;
+    padding: 0px 12px 0px 12px; 
+}
+#serch{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
 
     </style>
 </head>
 <body>
-    <!-- <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a href="../userhome" class="logo">
-            <img src="static/images (1).png" alt="logo" width="70px">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="../profile">profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../userviewproduct">view product</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../orderdetails">orderdetails</a>
-              </li>
-              <li class="nav-item"></li>
-                <a class="nav-link" href="../aboutus">aboutus</a>
-              </li>
-              <li class="nav-item"></li>
-                <a class="nav-link" href="../service">service</a>
-              </li>
-              <li class="nav-item"></li>
-                <a class="nav-link" href="../contact">contact</a>
-              </li>
-              <li class="nav-item"></li>
-                <a class="nav-link" href="../user_view_cart">My Cart</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../logout">logout</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="text" placeholder="Search">
-              <button class="btn btn-primary" type="button">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav> -->
-      
-
-
       <nav id="nav" class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
           <a href="../userhome" class="logo">
@@ -160,9 +124,9 @@
               </li>
             </ul>
              
-        <form class="d-flex" method="get" action="{% url 'product_search' %}">
-          <input class="form-control me-2"  type="text" name="query" placeholder="Search for products...">
-          <button class="btn btn-primary" type="submit">Search</button>
+        <form  id="serch" class="d-flex" method="get" action="{% url 'product_search' %}">
+          <input  class="form-control me-2"  type="text" name="query" placeholder="Search for products...">
+          <button id="srch_btn" class="btn btn-primary" type="submit">Search</button>
         </form>
           </div>
         </div>
