@@ -182,9 +182,27 @@ h2{
 #nav{
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   height: 80px;
-  margin: -20px;
+  margin: -20px -20px-20px 0;
+  
 }
 
+    @media only screen and (max-width: 992px) {
+        #carouselh2 {
+            width: 200px;
+            margin-left: 25%;
+            top:-400px;
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        #carouselh2 {
+            width: 200px;
+            top:-240px;
+        }
+        h3 input[type=buttont] {
+            margin-left: 25%;
+            margin-top: 20px;
+        }
+    }
 
 </style>
 </head>
@@ -269,8 +287,8 @@ h2{
 
   <!-- Overlay Content -->
     <div class="carousel-overlay">
-      <h2 id="carouselh2">At Fresh Cut, we pride ourselves on delivering the finest<br> quality meats straight to your doorstep. 
-        Our selection of premium cuts,<br> including succulent steaks, tender poultry, and fresh seafood </h2>
+      <h2 id="carouselh2">At Fresh Cut, we pride ourselves on delivering the finest quality meats straight to your doorstep. 
+        Our selection of premium cuts,including succulent steaks, tender poultry, and fresh seafood </h2>
       <button id="carouselbtn" class="btn btn-primary">Shop Now</button>
     </div>
   </div>
