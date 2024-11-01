@@ -232,6 +232,7 @@ def userviewproduct(req):
 
 def prodetails(req,id):
     data=Product.objects.get(pk=id)
+    # data1=cart.objects.filter(user=get_usr(req))
     return render(req,'user/prodetails.html',{'data':data})
 
 def products_by_category(request, category_id):
@@ -277,9 +278,21 @@ def qty_decri(req,id):
         data.save()
     return redirect(user_view_cart)
 
+def buynow1(req,id):
+    if 'user' in req.session:
+        product=Product.objects.get(pk=id)
+        user=get_usr(req)
+        quantity=1
+        date=datetime.datetime.now().strftime("%x")
+        price=product.price
+        order=Buy.objects.create(product=product,user=user,quantity=quantity,date_of_buying=date,price=price)
+        order.save()
+    return redirect(orderdetails)
+
 def buynow(req,id):
      if 'user' in req.session:
         cart_product=cart.objects.get(pk=id)
+        product=cart_product.product
         user=get_usr(req)
         quantity=cart_product.quantity
         date=datetime.datetime.now().strftime("%x")
@@ -311,10 +324,12 @@ def deleteitem(req,id):
     data.delete()
     return redirect(user_view_cart)
 
+
 def orderdetails(req):
-    data=Buy.objects.filter(user=get_usr(req))
-    return render(req,'user/orderdetails.html',{'data':data})
-    
+    # Fetch the orders for the user and order them by date_of_buying in descending order
+    data = Buy.objects.filter(user=get_usr(req))[::-1]
+    return render(req, 'user/orderdetails.html', {'data': data})
+
 
 
 def viewshop(req):

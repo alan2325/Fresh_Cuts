@@ -40,6 +40,23 @@
   margin: 0 0 50px 0;
   
 }
+.pro {
+            display: inline-block;
+            padding: 10px 15px;
+            color: blue; /* Blue text */
+            background-color: white; /* White background */
+            border: 1px solid rgb(41, 103, 196);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+            margin: 10px;
+        }
+
+        .pro:hover {
+            color: white; /* White text on hover */
+            background-color: rgb(41, 103, 196); /* Blue background on hover */
+        } 
 
 
     </style>
@@ -121,7 +138,9 @@
            <div class="card-body text-center">
              <img src="{{i.product.image.url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;height: 150px;">
              <h5 class="my-3">Product name : {{i.product.name}}</h5>
-             <p class="text-muted mb-1">price : {{i.product.price}}</p>
+             <!-- <p class="text-muted mb-1">price : {{i.product.price}}</p> -->
+             <p class="text-muted mb-1">price : {{i.total_price}}</p>
+
              <a href="../qty_incri/{{i.pk}}" class="btn">+</a><p class="text-muted mb-4">{{i.quantity}}kg</p>  
              <a href="../qty_decri/{{i.pk}}" class="btn">-</a>
              
@@ -130,8 +149,8 @@
      
                <!-- <button type="button" data-mdb-button-init="" data-mdb-ripple-init="" class="btn btn-primary" data-mdb-button-initialized="true">Details</button>
                <button type="button" data-mdb-button-init="" data-mdb-ripple-init="" class="btn btn-outline-primary ms-1" data-mdb-button-initialized="true">Edit</button> -->
-               <a href="../buynow/{{i.pk}}">Buy now</a>
-               <a href="../deleteitem/{{i.pk}}">Delete</a>
+               <a class="pro" href="../buynow/{{i.pk}}">Buy now</a>
+               <a class="pro" href="../deleteitem/{{i.pk}}">Delete</a>
      
              </div>
            </div>

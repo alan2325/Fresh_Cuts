@@ -25,6 +25,7 @@ urlpatterns = [
     path('user_view_cart',views.user_view_cart),
     path('qty_incri/<int:id>',views.qty_incri),
     path('qty_decri/<int:id>',views.qty_decri),
+    path('buynow1/<int:id>',views.buynow1),
     path('buynow/<int:id>',views.buynow),
     path('deleteitem/<int:id>',views.deleteitem),
     path('orderdetails',views.orderdetails),
