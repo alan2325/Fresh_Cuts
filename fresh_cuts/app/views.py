@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User,auth
 import datetime
 from django.conf import settings
-import razorpay
+# import razorpay
 import json
 from django.views.decorators.csrf import csrf_exempt
 
