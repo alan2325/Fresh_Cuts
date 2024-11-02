@@ -86,56 +86,66 @@ h2{
     color: #777;
 }
 
-.product:hover {
+/* .product:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-/* .pro{
-  color:black;
-  border:1px solid rgb(41, 103, 196);
-  margin:20px;
-  text-align: center;
 } */
 
-.pro {
+
+/* .pro {
             display: inline-block;
             padding: 10px 15px;
-            color: blue; /* Blue text */
-            background-color: white; /* White background */
+            color: blue; 
+            background-color: white;
             border: 1px solid rgb(41, 103, 196);
             text-align: center;
             text-decoration: none;
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .pro:hover {
-            color: white; /* White text on hover */
-            background-color: rgb(41, 103, 196); /* Blue background on hover */
-        } 
+            color: white; 
+            background-color: rgb(41, 103, 196); 
+        }  */
 
-.container{
+/* .container{
   margin: 0%;
   padding: 0%;
   margin-right: 0%;
-  width: 100%;
+  width: 49%;
 
+} */
+
+
+.order-container {
+  width: 100%; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #f8f8f8; 
+  /* max-height: 500px; */
+  /* margin: 300px; */
 }
 
-.order-container{
-  max-width: 500px;
+.order-left {
+  margin-right: 15px;
+ 
 }
+
+.order-right p {
+  margin: 0;
+  font-size: 14px;
+}
+
+
+
 
 .nav-link:hover{
         color: rgb(222, 247, 34);
     }
 
-
-
-    /* .navbar {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  height: 80px;
-} */
 
 .navbar .nav-link {
   transition: color 0.3s; /* Smooth transition for hover effect */
@@ -214,7 +224,69 @@ h2{
         #carouselbtn {
           margin: 100px 0 0 100px; 
         }
+        #order_dtls{
+          min-height: 500px;
+        }
     }
+
+
+
+
+    /* Ensure container sections have clear floating */
+.container {
+  width: 100%;
+  overflow: hidden; /* Fix floating overflow */
+  margin-top: 20px;
+}
+
+/* Gallery styling */
+.gallery {
+  float: none;
+  width: 100%;
+  margin: 0 auto; /* Center the gallery items */
+}
+
+/* Order details styling */
+#order_dtls {
+  clear: both;
+  padding-top: 30px;
+  width: 90%;
+  overflow: hidden; /* Fix floating overflow */
+  margin-top: 20px;
+  height: 350px;
+}
+
+.order-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+/* Ensure full-width images in both sections */
+.product img, .order-left img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Styling for the buttons and links */
+.pro {
+  display: inline-block;
+  margin: 5px 0;
+  color: blue;
+  background-color: white;
+  border: 1px solid rgb(41, 103, 196);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pro:hover {
+  color: white;
+  background-color: rgb(41, 103, 196);
+}
+
+
 
 </style>
 </head>
@@ -307,52 +379,57 @@ h2{
     
 
 
-  <div>
-    <h2> our new fresh meats</h2>
-  </div>
-  {% for i in data %}
-  <div class="gallery">
-    <div class="product">
-        <img src="{{i.image.url}}" alt="Product 1" >
-        <div class="description">
-            <h3>Product: {{i.name}}</h3>
-            <p class="price">{{i.discription}}</p>
-            <p class="quantity">qty:{{i.quantity}}kg</p>
-            <a class="pro"  href="../prodetails/{{i.pk}}">Details</a>
-            <a class="pro" href="../addtocart/{{i.pk}}">Add to cart</a>
+  <div class="container">
+    <h2>Our New Fresh Meats</h2>
+    <div class="row">
+      {% for i in data %}
+      <div class="col-md-4">
+        <div class="gallery">
+          <div class="product">
+            <img src="{{i.image.url}}" alt="Product Image">
+            <div class="description">
+              <h3>Product: {{i.name}}</h3>
+              <p class="price">{{i.discription}}</p>
+              <p class="quantity">qty:{{i.quantity}}kg</p>
+              <a class="pro" href="../prodetails/{{i.pk}}">Details</a>
+              <a class="pro" href="../addtocart/{{i.pk}}">Add to cart</a>
+            </div>
+          </div>
         </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
-  {% endfor %}
-  <div>
-    <h2>New History</h2>
-  </div>
-  {% for i in data1 %}
-  <div class="order-container">
-      <!-- <h2>Order Details</h2> -->
-      <div class="order-row">
-          <!-- Left Column: Image -->
-          <div class="order-left">
-              <img src="{{i.product.image.url}}" alt="Product Image" style="width:100%;">
-          </div>
-
-          <!-- Right Column: Order Details -->
-          <div class="order-right">
-              <p><strong>Product name :</strong> {{i.product.name}}</p>
-              <p><strong>Order Date:</strong> {{i.date_of_buying}}</p>
-              <p><strong>Shipping Address:</strong> {{i.user.location}}</p>
-              <p><strong>Payment Method:</strong> Cash on delivery</p>
-          </div>
-      </div>
-  </div>
-  {% endfor %}
+  
+  <div class="container" id="order_dtls">
+    <h2 class="text-center">Order Details</h2>
+    <div class="row"> 
+        {% for i in data1 %}
+        <div class="col-md-6 col-lg-6 mb-4">
+            <div class="order-container"> 
+                <div class="order-row d-flex align-items-center">
+                    <div class="order-left">
+                        <img src="{{i.product.image.url}}" alt="Product Image" class="img-fluid"  style="width: 150px;height: 150px;">
+                    </div>
+                    <div class="order-right">
+                        <p><strong>Product name:</strong> {{i.product.name}}</p>
+                        <p><strong>Order Date:</strong> {{i.date_of_buying}}</p>
+                        <p><strong>Shipping Address:</strong> {{i.user.location}}</p>
+                        <p><strong>Payment Method:</strong> Cash on delivery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
   <!-- Cart Section -->
 {% if data2 %}
 <div>
-  <h2>Our Cart</h2> <!-- This will only appear if data2 is not empty -->
+  <h2>Our Cart</h2> 
   {% for i in data2 %}
-  <div class="card mb-4">
+  <div class="card mb-6">
     <div class="card-body text-center">
       <img src="{{i.product.image.url}}" alt="Product Image" class="rounded-circle img-fluid" style="width: 150px;height: 150px;">
       <h5 class="my-3">Product name: {{i.product.name}}</h5>
