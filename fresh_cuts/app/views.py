@@ -384,64 +384,96 @@ def product_search(request):
 
 
 
-def order_payment(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
-        amount = request.POST.get("amount")
-        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
-        razorpay_order = client.order.create(
-            {"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"}
-        )
-        order_id=razorpay_order['id']
-        order = Order.objects.create(
-            name=name, amount=amount, provider_order_id=order_id
-        )
-        order.save()
-        return render(
-            request,
-            "index.html",
-            {
-                "callback_url": "http://" + "127.0.0.1:8000" + "razorpay/callback",
-                "razorpay_key": settings.RAZORPAY_KEY_ID,
-                "order": order,
-            },
-        )
-    return render(request, "index.html")
+# def order_payment(request):
+#     if request.method == "POST":
+#         name = request.POST.get("name")
+#         amount = request.POST.get("amount")
+#         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+#         razorpay_order = client.order.create(
+#             {"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"}
+#         )
+#         order_id=razorpay_order['id']
+#         order = Order.objects.create(
+#             name=name, amount=amount, provider_order_id=order_id
+#         )
+#         order.save()
+#         return render(
+#             request,
+#             "index.html",
+#             {
+#                 "callback_url": "http://" + "127.0.0.1:8000" + "razorpay/callback",
+#                 "razorpay_key": settings.RAZORPAY_KEY_ID,
+#                 "order": order,
+#             },
+#         )
+#     return render(request, "index.html")
 
 
-@csrf_exempt
-def callback(request):
-    def verify_signature(response_data):
-        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
-        return client.utility.verify_payment_signature(response_data)
+# @csrf_exempt
+# def callback(request):
+#     def verify_signature(response_data):
+#         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+#         return client.utility.verify_payment_signature(response_data)
 
-    if "razorpay_signature" in request.POST:
-        payment_id = request.POST.get("razorpay_payment_id", "")
-        provider_order_id = request.POST.get("razorpay_order_id", "")
-        signature_id = request.POST.get("razorpay_signature", "")
-        order = Order.objects.get(provider_order_id=provider_order_id)
-        order.payment_id = payment_id
-        order.signature_id = signature_id
-        order.save()
-        if not verify_signature(request.POST):
-            order.status = PaymentStatus.SUCCESS
-            order.save()
-            return render(request, "callback.html", context={"status": order.status})   # callback giving html page
-            #  or  return redirect(function name of callback giving html page)
-        else:
-            order.status = PaymentStatus.FAILURE
-            order.save()
-            return render(request, "callback.html", context={"status": order.status})  # callback giving html page
-            #  or  return redirect(function name of callback giving html page)
+#     if "razorpay_signature" in request.POST:
+#         payment_id = request.POST.get("razorpay_payment_id", "")
+#         provider_order_id = request.POST.get("razorpay_order_id", "")
+#         signature_id = request.POST.get("razorpay_signature", "")
+#         order = Order.objects.get(provider_order_id=provider_order_id)
+#         order.payment_id = payment_id
+#         order.signature_id = signature_id
+#         order.save()
+#         if not verify_signature(request.POST):
+#             order.status = PaymentStatus.SUCCESS
+#             order.save()
+#             return render(request, "callback.html", context={"status": order.status})   # callback giving html page
+#             #  or  return redirect(function name of callback giving html page)
+#         else:
+#             order.status = PaymentStatus.FAILURE
+#             order.save()
+#             return render(request, "callback.html", context={"status": order.status})  # callback giving html page
+#             #  or  return redirect(function name of callback giving html page)
 
-    else:
-        payment_id = json.loads(request.POST.get("error[metadata]")).get("payment_id")
-        provider_order_id = json.loads(request.POST.get("error[metadata]")).get(
-            "order_id"
-        )
-        order = Order.objects.get(provider_order_id=provider_order_id)
-        order.payment_id = payment_id
-        order.status = PaymentStatus.FAILURE
-        order.save()
-        return render(request, "callback.html", context={"status": order.status})  # callback giving html page
-        #  or  return redirect(function name of callback giving html page)
+#     else:
+#         payment_id = json.loads(request.POST.get("error[metadata]")).get("payment_id")
+#         provider_order_id = json.loads(request.POST.get("error[metadata]")).get(
+#             "order_id"
+#         )
+#         order = Order.objects.get(provider_order_id=provider_order_id)
+#         order.payment_id = payment_id
+#         order.status = PaymentStatus.FAILURE
+#         order.save()
+#         return render(request, "callback.html", context={"status": order.status})  # callback giving html page
+#         #  or  return redirect(function name of callback giving html page)
+
+
+# def get_delivery_user(req):
+#     return delivery.objects.get(Email=req.session['deliveryss'])
+
+# def delivery_home(req):
+#     if 'deliveryss' in req.session:
+#         delivery_user = get_delivery_user(req)
+#         assigned_orders = Buy.objects.filter(status__in=['Pending', 'Out for Delivery'], delivery_person=delivery_user)
+#         return render(req, 'delivery/deliveryhome.html', {'assigned_orders': assigned_orders})
+#     else:
+#         return redirect('login')
+
+# def view_order_details(req, order_id):
+#     order = Buy.objects.get(pk=order_id)
+#     return render(req, 'delivery/order_details.html', {'order': order})
+
+# def update_delivery_status(req, order_id, new_status):
+#     order = Buy.objects.get(pk=order_id)
+#     order.delivery_status = new_status
+#     order.status_updated_at = timezone.now()
+#     order.save()
+#     messages.success(req, f"Order status updated to {new_status}")
+#     return redirect('delivery_home')
+
+# def delivery_history(req):
+#     if 'deliveryss' in req.session:
+#         delivery_user = get_delivery_user(req)
+#         completed_deliveries = Buy.objects.filter(status='Delivered', delivery_person=delivery_user)
+#         return render(req, 'delivery/delivery_history.html', {'completed_deliveries': completed_deliveries})
+#     else:
+#         return redirect('login')

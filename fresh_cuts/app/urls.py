@@ -35,9 +35,11 @@ urlpatterns = [
     path('contact',views.contact),
     path('service',views.service),
     path('bookinghistry',views.bookinghistry),
-    # path('search/', views.search_by_category, name='search_by_category'),
     path('search/', views.product_search, name='product_search'),
-
+    # path('delivery_home', views.delivery_home, name='delivery_home'),
+    # path('order_details/<int:order_id>/', views.view_order_details, name='view_order_details'),
+    # path('update_delivery_status/<int:order_id>/<str:new_status>/', views.update_delivery_status, name='update_delivery_status'),
+    # path('delivery_history', views.delivery_history, name='delivery_history'),
 
 
     
