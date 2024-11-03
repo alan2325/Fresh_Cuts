@@ -55,17 +55,38 @@ class cart(models.Model):
         return self.quantity * self.product.price
     
 class Buy(models.Model):
-    product = models.ForeignKey(Product,on_delete=models.CASCADE)
-    user = models.ForeignKey(Register,on_delete=models.CASCADE)
-    date_of_buying = models.TextField()
-    payment_status = models.BooleanField(default=False)
-    quantity = models.IntegerField()
-    price = models.IntegerField()
-    del_boy=models.BooleanField(default=False)
+#     product = models.ForeignKey(Product,on_delete=models.CASCADE)
+#     user = models.ForeignKey(Register,on_delete=models.CASCADE)
+#     date_of_buying = models.TextField()
+#     payment_status = models.BooleanField(default=False)
+#     quantity = models.IntegerField()
+#     price = models.IntegerField()
+#     del_boy=models.BooleanField(default=False)
 
     
+#     def __str__(self):
+#         return self.product.name
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(Register, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    date_of_buying = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    # New field for delivery status
+    DELIVERY_STATUS_CHOICES = [
+        ("Pending", "Pending"),
+        ("Shipped", "Shipped"),
+        ("In Transit", "In Transit"),
+        ("Delivered", "Delivered"),
+    ]
+    delivery_status = models.CharField(
+        max_length=20, choices=DELIVERY_STATUS_CHOICES, default="Pending"
+    )
+
+    # Optional: define a string representation for clarity in admin
     def __str__(self):
-        return self.product.name
+        return f"{self.product.name} - {self.delivery_status}"
     
 class Product_quantity(models.Model):
     productid = models.IntegerField()

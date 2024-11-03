@@ -349,6 +349,7 @@ def orderdetails(req):
 
 
 
+
 def viewshop(req):
     data=Shopreg.objects.all()
     return render(req,'admin/viewshop.html',{'data':data})
