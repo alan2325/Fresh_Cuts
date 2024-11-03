@@ -425,14 +425,15 @@ h2{
 </div>
 
   <!-- Cart Section -->
+<!-- Cart Section -->
 {% if data2 %}
 <div class="container" id="cart_dtls">
   <h2>Our Cart</h2>
   <div class="row"> 
-  {% for i in data2 %}
-  <div class="card col-lg-6 mb-4">
-    <div class="order-container"> 
-      <div class="order-row d-flex align-items-center">
+    {% for i in data2 %}
+    <div class="col-md-6">
+      <div class="order-container"> 
+        <div class="order-row d-flex align-items-center">
           <div class="order-left">
             <img src="{{i.product.image.url}}" alt="Product Image" class="rounded-circle img-fluid" style="width: 150px;height: 150px;">
           </div>
@@ -442,7 +443,6 @@ h2{
             <a href="../qty_incri/{{i.pk}}" class="btn">+</a>
             <p class="text-muted mb-4">{{i.quantity}}kg</p>
             <a href="../qty_decri/{{i.pk}}" class="btn">-</a>
-      
             <div class="d-flex justify-content-center mb-2">
               <a href="../buynow/{{i.pk}}">Buy now</a>
               <a href="../deleteitem/{{i.pk}}">Delete</a>
@@ -451,12 +451,13 @@ h2{
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 {% else %}
-
+  <p>No items in cart</p>
 {% endif %}
+
 
 
   <div>
