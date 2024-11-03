@@ -316,23 +316,6 @@ def buynow(req,id):
         price=cart_product.product.price
         order=Buy.objects.create(product=cart_product.product,user=user,quantity=quantity,date_of_buying=date,price=price)
         order.save()
-    # if Product.quantity > 0:
-    #     # Reduce the stock
-    #     Product.quantity -= 1
-    #     Product.save()  # Save the changes to the database
-
-    #     # Display a success message
-    #     messages.success(req, f"You have successfully purchased {Product.name}!")
-
-    #     # Redirect to some success page, like order confirmation or products list
-    #     return redirect('user_view_cart')  # Update with actual URL name
-
-    # else:
-    #     # Display an error message if stock is insufficient
-    #     messages.error(req, "Sorry, this product is out of stock.")
-
-    #     # Redirect back to the product page or a different page
-    #     return redirect('user_view_cart', product_id=Product.id)
 
         return redirect(user_view_cart)
      
