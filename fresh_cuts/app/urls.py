@@ -19,7 +19,7 @@ urlpatterns = [
     path('upload',views.upload),
     path('category/<int:category_id>/', views.products_by_category, name='products_by_category'),
     path('userviewproduct',views.userviewproduct),
-    path('prodetails/<int:id>',views.prodetails),
+    path('prodetails/<int:id>',views.prodetails,name='prodetails'),
     path('shopprodetails/<int:id>',views.shopprodetails),
     path('addtocart/<int:id>',views.user_cart),
     path('user_view_cart',views.user_view_cart),

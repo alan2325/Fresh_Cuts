@@ -268,10 +268,7 @@ h2{
   overflow: hidden; /* Fix floating overflow */
   margin-top: 20px;
 }
-
 /* Gallery styling */
-
-
 /* Styling for the buttons and links */
 .pro {
   display: inline-block;
@@ -284,16 +281,10 @@ h2{
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
 }
-
 .pro:hover {
   color: white;
   background-color: rgb(41, 103, 196);
 }
-
-.home_img{
-  
-}
-
 </style>
 </head>
 <body>
@@ -451,7 +442,8 @@ h2{
             <!-- <a href="../qty_decri/{{i.pk}}" class="btn">-</a> -->
             <div class="d-flex justify-content-center mb-2">
               <a class="btn btn-primary" style="margin: 10px;" href="../buynow/{{i.pk}}">Buy now</a>
-              <a class="btn btn-primary" style="margin: 10px;" href="../deleteitem/{{i.pk}}">Delete</a>
+              <a class="btn btn-primary" style="margin: 10px;" href="{% url 'prodetails' i.pk %}">Details</a>
+              
             </div>
           </div>
         </div>

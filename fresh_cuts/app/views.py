@@ -247,10 +247,18 @@ def userviewproduct(req):
     data=Product.objects.all()
     return render(req,'user/userviewproduct.html',{'data':data})
 
-def prodetails(req,id):
-    data=Product.objects.get(pk=id)
-    # data1=cart.objects.filter(user=get_usr(req))
-    return render(req,'user/prodetails.html',{'data':data})
+# def prodetails(req,id):
+#     data=Product.objects.get(pk=id)
+#     # data1=cart.objects.filter(user=get_usr(req))
+#     return render(req,'user/prodetails.html',{'data':data})
+
+def prodetails(req, id):
+    try:
+        data = Product.objects.get(pk=id)
+        return render(req, 'user/prodetails.html', {'data': data})
+    except Product.DoesNotExist:
+        messages.error(req, "Product not found.")
+        return redirect(userviewproduct)
 
 def products_by_category(request, category_id):
     category = Category.objects.get(pk=id)
