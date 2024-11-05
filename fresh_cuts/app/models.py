@@ -35,7 +35,7 @@ class Product(models.Model):
     name = models.TextField()
     discription = models.TextField()
     price = models.IntegerField()
-    # category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     quantity = models.TextField()
     offerprice = models.IntegerField()
     image = models.FileField()
@@ -55,18 +55,6 @@ class cart(models.Model):
         return self.quantity * self.product.price
     
 class Buy(models.Model):
-#     product = models.ForeignKey(Product,on_delete=models.CASCADE)
-#     user = models.ForeignKey(Register,on_delete=models.CASCADE)
-#     date_of_buying = models.TextField()
-#     payment_status = models.BooleanField(default=False)
-#     quantity = models.IntegerField()
-#     price = models.IntegerField()
-#     del_boy=models.BooleanField(default=False)
-
-    
-#     def __str__(self):
-#         return self.product.name
-
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(Register, on_delete=models.CASCADE)
     quantity = models.IntegerField()
@@ -117,11 +105,6 @@ class delpro(models.Model):
     date=models.TextField(null=True) 
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
 
     
 
