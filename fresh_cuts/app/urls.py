@@ -36,6 +36,7 @@ urlpatterns = [
     path('service',views.service),
     path('bookinghistry',views.bookinghistry),
     path('search/', views.product_search, name='product_search'),
+    path('pro_search/', views.pro_search, name='pro_search'),
     # path('delivery_home', views.delivery_home, name='delivery_home'),
     # path('order_details/<int:order_id>/', views.view_order_details, name='view_order_details'),
     # path('update_delivery_status/<int:order_id>/<str:new_status>/', views.update_delivery_status, name='update_delivery_status'),

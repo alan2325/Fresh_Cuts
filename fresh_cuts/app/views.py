@@ -382,14 +382,20 @@ def bookinghistry(req):
 
 
 def product_search(request):
-    query = request.GET.get('query')  # Get the search term from the request
+    query = request.GET.get('query') 
     products = []
     if query:
-        # Filter products whose name contains the search term (case-insensitive)
         products = Product.objects.filter(name__icontains=query)
         
     return render(request, 'user/product_search.html', {'products': products, 'query': query})
 
+def pro_search(request):
+    query = request.GET.get('query') 
+    products = []
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+        
+    return render(request, 'shop/pro_search.html', {'products': products, 'query': query})
 
 
 # def order_payment(request):
