@@ -173,6 +173,19 @@ def deliverys(req):
     
     return render(req,'delivery/deliveryhome.html')
 
+# def addpro(req):
+#     if req.method=='POST':
+#         name = req.POST['name']
+#         discription = req.POST['discription']
+#         price = req.POST['price']
+#         quantity = req.POST['quantity']
+#         offerprice = req.POST['offerprice']
+#         image = req.FILES['image']
+#         data=Product.objects.create(name=name,discription=discription,price=price,quantity=quantity,offerprice=offerprice,image=image,shop=get_shop(req))
+#         data.save()
+#         return redirect(viewpro)
+#     return render(req,'shop/addpro.html')
+
 def addpro(req):
     if req.method=='POST':
         name = req.POST['name']
@@ -181,10 +194,15 @@ def addpro(req):
         quantity = req.POST['quantity']
         offerprice = req.POST['offerprice']
         image = req.FILES['image']
-        data=Product.objects.create(name=name,discription=discription,price=price,quantity=quantity,offerprice=offerprice,image=image,shop=get_shop(req))
+        category=req.POST['category']
+        category=Category.objects.get(pk=category)
+        data=Product.objects.create(name=name,discription=discription,price=price,quantity=quantity,offerprice=offerprice,image=image,category=category, shop=get_shop(req))
         data.save()
+    
         return redirect(viewpro)
-    return render(req,'shop/addpro.html')
+    category=Category.objects.all()
+    
+    return render(req,'shop/addpro.html', {'category':category})
 
  
     
@@ -202,8 +220,7 @@ def edit(req,id):
         price=req.POST['price']
         offerprice=req.POST['offerprice']
         quantity=req.POST['quantity']
-        image=req.POST['image']
-        Product.objects.filter(pk=id).update(name=name1,price=price,offerprice=offerprice,quantity=quantity,image=image)
+        Product.objects.filter(pk=id).update(name=name1,price=price,offerprice=offerprice,quantity=quantity)
         return redirect(viewpro)
     return render(req,'shop/edit.html',{'data':data})
 
