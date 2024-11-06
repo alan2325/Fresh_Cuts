@@ -218,6 +218,10 @@ h3{
           </li>
         </ul>
           
+
+        
+
+
         <form class="d-flex" method="get" action="{% url 'product_search' %}">
           <input class="form-control me-2"  type="text" name="query" placeholder="Search for products...">
           <button class="btn btn-primary" type="submit">Search</button>
@@ -227,7 +231,7 @@ h3{
   </nav>
   
 
-  <div class="container-fluid mt-3 d-flex justify-content-between align-items-center">
+  <!-- <div class="container-fluid mt-3 d-flex justify-content-between align-items-center">
     <div class="dropdown">
       <button class="dropbtn" aria-haspopup="true">Category 
         <i class="fa fa-caret-down"></i>
@@ -239,7 +243,7 @@ h3{
         <a href="#">Fish</a>
       </div>
     </div>
-  </div>
+  </div> -->
   
   <div>
     <h3>Products {{ category.name }}</h3>
