@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -103,6 +104,16 @@ class delpro(models.Model):
     buy=models.ForeignKey(Buy,on_delete=models.CASCADE)
     status=models.BooleanField(default=False)
     date=models.TextField(null=True) 
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(Register, on_delete=models.CASCADE, related_name='feedbacks')
+    message = models.TextField()
+    rating = models.IntegerField(default=5)  # 1 to 5 rating
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback from {self.user.name}"
 
 
 
