@@ -39,6 +39,8 @@ urlpatterns = [
     path('pro_search/', views.pro_search, name='pro_search'),
     path('submit_feedback/', views.submit_feedback, name='submit_feedback'),
     path('feedback_list/', views.feedback_list, name='feedback_list'),
+    path('admin_feedback/', views.admin_feedback, name='admin_feedback'),
+
     # path('delivery_home', views.delivery_home, name='delivery_home'),
     # path('order_details/<int:order_id>/', views.view_order_details, name='view_order_details'),
     # path('update_delivery_status/<int:order_id>/<str:new_status>/', views.update_delivery_status, name='update_delivery_status'),

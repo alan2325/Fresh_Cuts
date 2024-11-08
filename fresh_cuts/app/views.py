@@ -436,6 +436,12 @@ def feedback_list(request):
     return render(request, 'shop/feedback_list.html', {'feedbacks': feedbacks})
 
 
+def admin_feedback(request):
+    admin_feedback = Feedback.objects.all().order_by('-submitted_at')
+    return render(request, 'admin/admin_feedback.html', {'admin_feedback': admin_feedback})
+
+
+
 # def order_payment(request):
 #     if request.method == "POST":
 #         name = request.POST.get("name")
