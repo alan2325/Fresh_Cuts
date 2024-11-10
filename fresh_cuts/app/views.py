@@ -150,7 +150,7 @@ def delregister(req):
 
 def userhome(req):
     if 'user' in req.session:
-        data = Product.objects.all()
+        data = Product.objects.all().order_by('-shop')[:4]
         data1 = Buy.objects.filter(user=get_usr(req)).order_by('-date_of_buying')[:2]  # Only get the latest 2 orders
         data2 = cart.objects.filter(user=get_usr(req)).order_by('-id')[:2]  # Get the latest 4 cart items
 
