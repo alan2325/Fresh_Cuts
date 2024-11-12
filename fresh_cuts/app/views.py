@@ -418,18 +418,21 @@ def pro_search(request):
 
 
 
-def submit_feedback(request):
-    if request.method == "POST":
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            feedback = form.save(commit=False)
-            feedback.user.name = request.user
-            feedback.save()
-            return redirect('feedback_success')
-    else:
-        form = FeedbackForm()
-    return render(request, 'user/submit_feedback.html', {'form': form})
+def submit_feedback(req):
+    if req.method=='POST':
+        user = req.POST['user']
+        message = req.POST['message']
+        rating = req.POST['rating']
+        submitted_at = req.POST['submitted_at']
+        
+        data=Feedback.objects.create(user=user,message=message,rating=rating,submitted_at=submitted_at, shop=get_shop(req))
+        data.save()
+    
+        return redirect(feedback_list)
+    
+    return render(req,'user/submit_feedback.html')
 
+ 
 
 def feedback_list(request):
     feedbacks = Feedback.objects.all().order_by('-submitted_at')
