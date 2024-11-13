@@ -7,7 +7,6 @@ from django.conf import settings
 # import razorpay
 import json
 from django.views.decorators.csrf import csrf_exempt
-from .forms import FeedbackForm
 
 # Create your views here.
 
@@ -59,9 +58,6 @@ def login(req):
 
                     return redirect(viewpro)
                 except Shopreg.DoesNotExist:
-                    # data=delivery.objects.get(Email=Email,password=password)
-                    # req.session['shop']=data.Email
-                    # return redirect(deliverys)
 
                     messages.warning(req, "INVALID INPUT !  ")
                     
@@ -138,15 +134,7 @@ def delregister(req):
     print(delregister)
 
 
-# def userhome(req):
-#     if 'user' in req.session:
-#         data=Product.objects.all()
-#         data1=Buy.objects.filter(user=get_usr(req))
-#         data2=cart.objects.filter(user=get_usr(req))
 
-#         return render(req,'user/userhome.html',{'data':data,'data1':data1,'data2':data2})
-#     else:
-#         return redirect(login)
 
 def userhome(req):
     if 'user' in req.session:
@@ -165,27 +153,14 @@ def adminhome(req):
     return render(req,'admin/adminhome.html')
 
 
-# def shophome(req):
-    
-#     return render(req,'shop/viewpro.html')
+
 
 
 def deliverys(req):
     
     return render(req,'delivery/deliveryhome.html')
 
-# def addpro(req):
-#     if req.method=='POST':
-#         name = req.POST['name']
-#         discription = req.POST['discription']
-#         price = req.POST['price']
-#         quantity = req.POST['quantity']
-#         offerprice = req.POST['offerprice']
-#         image = req.FILES['image']
-#         data=Product.objects.create(name=name,discription=discription,price=price,quantity=quantity,offerprice=offerprice,image=image,shop=get_shop(req))
-#         data.save()
-#         return redirect(viewpro)
-#     return render(req,'shop/addpro.html')
+
 
 def addpro(req):
     if req.method=='POST':
@@ -238,12 +213,7 @@ def profile(req):
     else:
         return redirect(login)
     
-# def shops(req):
-#     if 'shop' in req.session:
-#         # data=Register.objects.get(Email=req.session['user'])
-#         return render(req,'viewpro.html',{'data':get_shop(req)})
-#     else:
-#         return redirect(shophome)
+
     
 
 ###profile update
@@ -265,14 +235,18 @@ def userviewproduct(req):
     data=Product.objects.all()
     return render(req,'user/userviewproduct.html',{'data':data})
 
-# def prodetails(req,id):
-#     data=Product.objects.get(pk=id)
-#     # data1=cart.objects.filter(user=get_usr(req))
-#     return render(req,'user/prodetails.html',{'data':data})
+
 
 def prodetails(req, id):
     try:
         data = Product.objects.get(pk=id)
+        if req.method=='POST':
+            message = req.POST['message']
+            rating = req.POST['rating']
+            submitted_at = req.POST['submitted_at']
+        
+            data=Feedback.objects.create(message=message,rating=rating,submitted_at=submitted_at)
+            data.save()
         return render(req, 'user/prodetails.html', {'data': data})
     except Product.DoesNotExist:
         messages.error(req, "Product not found.")
@@ -418,30 +392,30 @@ def pro_search(request):
 
 
 
-def submit_feedback(req):
-    if req.method=='POST':
-        user = req.POST['user']
-        message = req.POST['message']
-        rating = req.POST['rating']
-        submitted_at = req.POST['submitted_at']
+# def submit_feedback(req):
+#     if req.method=='POST':
+#         user = req.POST['user']
+#         message = req.POST['message']
+#         rating = req.POST['rating']
+#         submitted_at = req.POST['submitted_at']
         
-        data=Feedback.objects.create(user=user,message=message,rating=rating,submitted_at=submitted_at, shop=get_shop(req))
-        data.save()
+#         data=Feedback.objects.create(user=user,message=message,rating=rating,submitted_at=submitted_at, shop=get_shop(req))
+#         data.save()
     
-        return redirect(feedback_list)
+#         return redirect(feedback_list)
     
-    return render(req,'user/submit_feedback.html')
+#     return render(req,'user/submit_feedback.html')
 
  
 
-def feedback_list(request):
-    feedbacks = Feedback.objects.all().order_by('-submitted_at')
-    return render(request, 'shop/feedback_list.html', {'feedbacks': feedbacks})
+# def feedback_list(request):
+#     feedbacks = Feedback.objects.all().order_by('-submitted_at')
+#     return render(request, 'shop/feedback_list.html', {'feedbacks': feedbacks})
 
 
-def admin_feedback(request):
-    admin_feedback = Feedback.objects.all().order_by('-submitted_at')
-    return render(request, 'admin/admin_feedback.html', {'admin_feedback': admin_feedback})
+# def admin_feedback(request):
+#     admin_feedback = Feedback.objects.all().order_by('-submitted_at')
+#     return render(request, 'admin/admin_feedback.html', {'admin_feedback': admin_feedback})
 
 
 
