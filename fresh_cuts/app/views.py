@@ -241,12 +241,14 @@ def prodetails(req, id):
     try:
         data = Product.objects.get(pk=id)
         if req.method=='POST':
+            user=get_usr(req)
+            shop=data.shop
             message = req.POST['message']
             rating = req.POST['rating']
             submitted_at = req.POST['submitted_at']
         
-            data=Feedback.objects.create(message=message,rating=rating,submitted_at=submitted_at)
-            data.save()
+            feedback=Feedback.objects.create(user=user,shop=shop,product=data,message=message,rating=rating,submitted_at=submitted_at)
+            feedback.save()
         return render(req, 'user/prodetails.html', {'data': data})
     except Product.DoesNotExist:
         messages.error(req, "Product not found.")
@@ -259,7 +261,8 @@ def products_by_category(request, category_id):
 
 def shopprodetails(req,id):
     data=Product.objects.get(pk=id)
-    return render(req,'shop/shopprodetails.html',{'data':data})
+    feedback = Feedback.objects.filter(product=data).order_by('-submitted_at')
+    return render(req,'shop/shopprodetails.html',{'data':data,'feedback':feedback})
 
 
 def user_cart(req,id):

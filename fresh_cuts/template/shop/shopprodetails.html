@@ -14,7 +14,10 @@
     margin: 0;
     /* padding: 20px; */
 }
-
+/* 
+h4{
+  text-align: center;
+} */
 
 
 
@@ -238,12 +241,21 @@ nav-link:hover{
         <h4>Offer price : {{data.offerprice}}</h4>
        
       </div>
+      
     </div>
  
     <!-- Product Pricing -->
     <div class="product-price">
       <a href="../edit/{{data.pk}}" class="cart-btn">Edit</a>
       <a href="../delete/{{data.pk}}" class="cart-btn">Delete</a>
+    </div>
+    <div>
+      {% for i in feedback %}
+      <h4>Feedback</h4>
+      <p>message: {{i.message}}</p>
+        <p>rating: {{i.rating}}</p>
+        {% endfor %}
+    
     </div>
   </div>
 </main>
