@@ -193,9 +193,7 @@ nav-link:hover{
           <li class="nav-item">
             <a class="nav-link"  href="../bookinghistry">Bookinghistory</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link"  href="../FeedBack">FeedBack</a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="../logout">Logout</a>
           </li>
@@ -250,11 +248,20 @@ nav-link:hover{
       <a href="../delete/{{data.pk}}" class="cart-btn">Delete</a>
     </div>
     <div>
-      {% for i in feedback %}
       <h4>Feedback</h4>
-      <p>message: {{i.message}}</p>
-        <p>rating: {{i.rating}}</p>
-        {% endfor %}
+      {% for i in feedback %}
+      <p>Message: {{ i.message }}</p>
+      <!-- <p>Rating: {{ i.rating }}</p> -->
+       
+    {% empty %}
+      <p>No feedback available.</p>
+    {% endfor %}
+    {% if average_rating %}
+    <p>Average Rating: {{ average_rating }}</p>
+  {% else %}
+    <h4>No ratings yet</h4>
+  {% endif %}
+     
     
     </div>
   </div>

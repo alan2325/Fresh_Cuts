@@ -5,6 +5,8 @@ from django.contrib.auth.models import User,auth
 import datetime
 from django.conf import settings
 # import razorpay
+from django.db.models import Avg
+import math
 import json
 from django.views.decorators.csrf import csrf_exempt
 
@@ -262,7 +264,9 @@ def products_by_category(request, category_id):
 def shopprodetails(req,id):
     data=Product.objects.get(pk=id)
     feedback = Feedback.objects.filter(product=data).order_by('-submitted_at')
-    return render(req,'shop/shopprodetails.html',{'data':data,'feedback':feedback})
+    average_rating = feedback.aggregate(Avg('rating'))['rating__avg']
+    rounded_average_rating = round(average_rating) if average_rating else None
+    return render(req,'shop/shopprodetails.html',{'data':data,'feedback':feedback,'average_rating': rounded_average_rating})
 
 
 def user_cart(req,id):
