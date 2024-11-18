@@ -51,7 +51,7 @@ def login(req):
                 auth.login(req,admin)
                 req.session['admin']=Email
 
-                return redirect(adminhome)
+                return redirect(viewshop)
             
             else:
                 try:
