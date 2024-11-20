@@ -24,7 +24,7 @@
   font-size: 18px;
 }
 
-button {
+/* .btn {
   border: none;
   outline: 0;
   display: inline-block;
@@ -35,7 +35,7 @@ button {
   cursor: pointer;
   width: 100%;
   font-size: 18px;
-}
+} */
 
 a {
   text-decoration: none;
@@ -77,8 +77,9 @@ button:hover, a:hover {
   margin: -20px 0 30px 0;
 }
 #srch_btn{
-    margin: 2px 0 15px 0;
+    /* margin: 2px 0 15px 0; */
     /* padding: 20px -12px 0px -12px;  */
+    width: 80px;
 }
 #serch{
   /* margin-top: 10px; */
@@ -128,7 +129,7 @@ button:hover, a:hover {
           
         <form class="d-flex" method="get" action="{% url 'product_search' %}">
           <input id="serch" class="form-control me-2"  type="text" name="query" placeholder="Search for products...">
-          <button id="rch_btn" class="btn btn-primary" type="submit">Search</button>
+          <button id="srch_btn"class="btn btn-primary" type="submit">Search</button>
       </form>
       </div>
     </div>
@@ -142,8 +143,7 @@ button:hover, a:hover {
     <h1>{{data.name}}</h1>
     <p>{{data.phonenumber}}</p>
     <p>{{data.location}}</p>
-    <p>
-      <a href="../upload">Update</p>
+    <p><a class="btn btn-primary" href="../upload">Update</p>
   </div>
 </div>
 

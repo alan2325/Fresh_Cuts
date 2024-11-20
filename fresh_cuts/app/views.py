@@ -9,6 +9,11 @@ from django.db.models import Avg
 import math
 import json
 from django.views.decorators.csrf import csrf_exempt
+import re
+from django.core.exceptions import ValidationError
+
+
+
 
 # Create your views here.
 
@@ -221,18 +226,28 @@ def profile(req):
 ###profile update
 def upload(req):
     if 'user' in req.session:
-        data=Register.objects.get(Email=req.session['user'])
-        if req.method=='POST':
-            name=req.POST['name']
-            phonenumber=req.POST['phonenumber']
-            location=req.POST['location']
-            Register.objects.filter(Email=req.session['user']).update(name=name,phonenumber=phonenumber,location=location)
+        try:
+            data = Register.objects.get(Email=req.session['user'])
+        except Register.DoesNotExist:
+            return redirect(login)
+
+        if req.method == 'POST':
+            name = req.POST['name']
+            phonenumber = req.POST['phonenumber']
+            location = req.POST['location']
+            if not re.match(r'^[789]\d{9}$', phonenumber):
+                return render(req, 'user/updateprofile.html', {
+                    'data': data,
+                    'error_message': 'Invalid input'
+                })
+            Register.objects.filter(Email=req.session['user']).update(name=name, phonenumber=phonenumber, location=location)
             return redirect(profile)
-        return render(req,'user/updateprofile.html',{'data':data})
+        return render(req, 'user/updateprofile.html', {'data': data})
 
     else:
-       return redirect(login)
-    
+
+        return redirect(login)
+
 def userviewproduct(req):
     data=Product.objects.all()
     return render(req,'user/userviewproduct.html',{'data':data})
