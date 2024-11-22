@@ -198,32 +198,7 @@ html, body {
 .cart-btn:hover {
   background-color: #64af3d;
 }
-/* Responsive */
-@media (max-width: 940px) {
-  .container {
-    flex-direction: column;
-    margin-top: 60px;
-  }
- 
-  .left-column,
-  .right-column {
-    width: 100%;
-  }
- 
-  .left-column img {
-    width: 300px;
-    right: 0;
-    top: -65px;
-    left: initial;
-  }
-}
- 
-@media (max-width: 535px) {
-  .left-column img {
-    width: 220px;
-    top: -85px;
-  }
-}
+
 
 .nav-link:hover{
         color: rgb(222, 247, 34);
@@ -269,6 +244,41 @@ h3{
   text-align: right;
   color: #C91524;
   margin-right: 300px;
+}
+
+/* Responsive */
+@media only screen and (max-width: 992px) {
+        #mynavbar {
+          background-color: #2c2727;
+          padding: 10px;
+        }
+    }
+
+
+@media (max-width: 940px) {
+  .container {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+ 
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+ 
+  .left-column img {
+    width: 300px;
+    right: 0;
+    top: -65px;
+    left: initial;
+  }
+}
+ 
+@media (max-width: 535px) {
+  .left-column img {
+    width: 220px;
+    top: -85px;
+  }
 }
     </style>
 </head>
