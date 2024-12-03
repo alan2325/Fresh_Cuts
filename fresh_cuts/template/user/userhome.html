@@ -46,25 +46,24 @@
 
 
 
-.carousel-overlay {
+ .carousel-overlay {
   position: absolute;
   top: 0%; 
   height: 100%;
   left: 0;
   width: 50%;
             background: linear-gradient(90deg, 
-                rgba(51,18,18,1) 5%,   
-                rgba(51,18,18,0.9) 30%, 
-                rgba(31,11,11,0.6) 80%, 
+                rgb(14, 14, 14) 5%,   
+                rgba(28, 27, 27, 0.9) 30%, 
+                rgba(18, 18, 18, 0.6) 80%, 
                 rgba(0,0,0,0) 100%     
             );
   z-index: 0; 
   color: white;
   text-align:left; 
-  /* background: rgba(0, 0, 0, 0.5);  */
   padding: 20px; 
 }
-
+/*
 #carouselh2{
   margin: 80px 200px 0 50px; 
   font-size:3cap;
@@ -73,23 +72,95 @@
 #carouselbtn {
   padding: 10px 20px;
   margin: 100px 0 0 300px; 
+} */
+
+
+/* General Carousel Styles */
+.carousel-inner img {
+  object-fit: cover;
+  height: 600px;
 }
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.carousel-indicators .active {
+  background-color: #007bff;
+  transform: scale(1.2);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/* Overlay Styles */
+/* .carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, rgba(51, 18, 18, 0.9) 0%, rgba(0, 0, 0, 0.5) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px;
+  color: white;
+  z-index: 1;
+} */
+
+.carousel-content h2 {
+  margin: 50px;
+  color: #f8f9fa;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.carousel-content .description {
+  margin: 50px;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #f8f9fa;
+}
+
+#carouselbtn {
+  margin-left: 30%;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  background-color: #007bff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+#carouselbtn:hover {
+  background-color: #0056b3;
+}
+
 
 /* gallery */
 
 .gallery {
-    /* display: flex;
-    flex-wrap: wrap; */
-    /* gap: 20px; */
+
     width:300px;
     float: left;
     margin-left: 100px;
     padding-top: 5px;
     margin-top: 100px;
     padding-bottom: 100px;
-    /* height:80px;  */
 
-    /* justify-content: center; */
 }
 .gallery {
   float: none;
@@ -100,7 +171,7 @@
 
 /* product display */
  
-.product {
+/* .product {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -114,8 +185,7 @@
   min-height: 300px;
   max-width: 250px;
   max-height: 300px;
-    /* width: 150px;
-    height: 150px; */
+
     display: block;
 }
 .product .description {
@@ -135,7 +205,7 @@
 .product .details {
     font-size: 14px;
     color: #777;
-}
+} */
 
 /* order details */
 
@@ -146,6 +216,7 @@
   overflow: hidden; /* Fix floating overflow */
   margin-top: 20px;
   height: 350px;
+  
 }
 .order-row {
   display: flex;
@@ -200,6 +271,103 @@ h2{
 
 
 
+
+/* Container Styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Product Card */
+.product-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Product Info */
+.product-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.product-info h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product-info .description {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.product-info .price {
+  font-size: 16px;
+  color: #e67e22;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.actions .btn {
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  color: white;
+  background-color: #007bff;
+  transition: background-color 0.3s ease;
+}
+
+.actions .btn:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
     /* Ensure container sections have clear floating */
 .container {
   width: 100%;
@@ -226,15 +394,15 @@ h2{
 
 
 @media only screen and (max-width: 992px) {
-        #carouselh2 {
+        /* #carouselh2 {
             width: 200px;
             margin-left: 25%;
             top:-400px;
             font-size: large;
-        }
-        #carouselbtn {
+        } */
+        /* #carouselbtn {
           margin: 100px 0 0 130px; 
-        }
+        } */
         #mynavbar {
           background-color: #2c2727;
           padding: 10px;
@@ -242,18 +410,18 @@ h2{
         }
     }
     @media only screen and (max-width: 768px) {
-        #carouselh2 {
+        /* #carouselh2 {
             width: 200px;
             top:-240px;
             font-size: medium;
-        }
+        } */
         h3 input[type=buttont] {
             margin-left: 25%;
             margin-top: 20px;
         }
-        #carouselbtn {
+        /* #carouselbtn {
           margin: 100px 0 0 100px; 
-        }
+        } */
         #order_dtls{
           min-height: 500px;
         }
@@ -265,6 +433,41 @@ h2{
 
         }
     }
+
+    /* Responsiveness */
+@media only screen and (max-width: 992px) {
+  .carousel-overlay {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+  .carousel-content h2 {
+    font-size: 2rem;
+  }
+  .carousel-content .description {
+    font-size: 1rem;
+  }
+  #carouselbtn {
+    font-size: 1rem;
+    margin-left: 5%;
+    margin-top: 100px;
+
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .carousel-content h2 {
+    font-size: 1.8rem;
+  }
+  .carousel-content .description {
+    font-size: 0.9rem;
+  }
+  #carouselbtn {
+    font-size: 1rem;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+}
 </style>
 </head>
 <body>
@@ -288,6 +491,9 @@ h2{
             <a class="nav-link" href="../orderdetails">Order Details</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="../user_view_cart">My Cart</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="../aboutus">About Us</a>
           </li>
           <li class="nav-item">
@@ -295,9 +501,6 @@ h2{
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../contact">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../user_view_cart">My Cart</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../profile">Profile</a>
@@ -316,47 +519,49 @@ h2{
   </nav>
 
 
-
   <div id="demo" class="carousel slide" data-bs-ride="carousel">
-  <!-- Indicators/dots -->
+    <!-- Indicators/Dots -->
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
       <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
       <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
     </div>
   
-  <!-- The slideshow/carousel -->
+    <!-- The Slideshow/Carousel -->
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="static/five-raw-wagyu-steak-cuts-garnished-with-rosemary-peppercorns-arranged-black-slate_946823-7859.jpg" alt="Los Angeles" class="d-block" style="width:100%" height="600px">
+        <img src="static/five-raw-wagyu-steak-cuts-garnished-with-rosemary-peppercorns-arranged-black-slate_946823-7859.jpg" alt="Los Angeles" class="d-block w-100" style="height: 600px; object-fit: cover;">
       </div>
       <div class="carousel-item">
-        <img src="static/chicken1_16_9.jpg" alt="Chicago" class="d-block" style="width:100%" height="600px">
+        <img src="static/chicken1_16_9.jpg" alt="Chicago" class="d-block w-100" style="height: 600px; object-fit: cover;">
       </div>
       <div class="carousel-item">
-        <img src="static/fish1.jpg" alt="New York" class="d-block" style="width:100%" height="600px">
+        <img src="static/fish1.jpg" alt="New York" class="d-block w-100" style="height: 600px; object-fit: cover;">
       </div>
     </div>
   
-  <!-- Left and right controls/icons -->
+    <!-- Left and Right Controls -->
     <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
       <span class="carousel-control-prev-icon"></span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
       <span class="carousel-control-next-icon"></span>
     </button>
-
-  <!-- Overlay Content -->
+  
+    <!-- Overlay Content -->
     <div class="carousel-overlay">
-      <h2 id="carouselh2">At Fresh Cut, we pride ourselves on delivering the finest quality meats straight to your doorstep. 
-        Our selection of premium cuts,including succulent steaks, tender poultry, and fresh seafood </h2>
-      <a id="carouselbtn" class="btn btn-primary" href="../userviewproduct">Shop Now</a>
+      <div class="carousel-content">
+        <h2>At Fresh Cut, we pride ourselves on delivering the finest quality meats straight to your doorstep.</h2>
+        <p class="description">Our selection includes succulent steaks, tender poultry, and fresh seafood.</p>
+        <a id="carouselbtn" class="btn btn-primary" href="../userviewproduct">Shop Now</a>
+      </div>
     </div>
   </div>
+  
     
 
 
-  <div class="container">
+  <!-- <div class="container">
     <h2>Our New Fresh Meats</h2>
     <div class="row">
       {% for i in data %}
@@ -376,8 +581,29 @@ h2{
       </div>
       {% endfor %}
     </div>
+  </div> -->
+  
+  <div class="container">
+    <h2>Our New Fresh Meats</h2>
+    <div class="product-grid">
+      {% for i in data %}
+      <div class="product-card">
+        <img src="{{i.image.url}}" alt="Product Image">
+        <div class="product-info">
+          <h3>{{i.name}}</h3>
+          <p class="description">{{i.discription}}</p>
+          <p class="price">Rs: {{i.price}} / Kg</p>
+          <div class="actions">
+            <a href="../prodetails/{{i.pk}}" class="btn">Details</a>
+            <a href="../addtocart/{{i.pk}}" class="btn">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
   
+
   <div class="container" id="order_dtls">
     <h2 class="text-center">Order Details</h2>
     <div class="row"> 
@@ -439,9 +665,9 @@ h2{
 
 
   <div class="home_img">
-      <img src="static/home img-overlay(3).png" width="100%" height="100%" style="margin-bottom:-45px ;">
+      <img src="static/home img-overlay(3).png" width="100%" height="100%" >
   </div>
-  <div class="container-fluid p-5 my-5 bg-dark text-white footer" >
+  <div class="container-fluid p-5  bg-dark text-white footer" >
     <table >
       <thead>
         <tr>

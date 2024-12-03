@@ -238,7 +238,7 @@ def upload(req):
             if not re.match(r'^[789]\d{9}$', phonenumber):
                 return render(req, 'user/updateprofile.html', {
                     'data': data,
-                    'error_message': 'Invalid Contact'
+                    'error_message': 'Invalid Contact Number'
                 })
             Register.objects.filter(Email=req.session['user']).update(name=name, phonenumber=phonenumber, location=location)
             return redirect(profile)
