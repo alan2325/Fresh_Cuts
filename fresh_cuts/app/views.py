@@ -11,7 +11,8 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 import re
 from django.core.exceptions import ValidationError
-
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 
@@ -99,6 +100,12 @@ def register(req):
         try:
             data=Register.objects.create(name=name1,Email=email2,phonenumber=phonenumber3,location=location4,password=password5)
             data.save()
+             # Validate email
+            subject = 'Registration details '
+            message = 'ur account uname {}  and password {}'.format(name1,password5)
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = [email2]
+            send_mail(subject, message, from_email, recipient_list,fail_silently=False)
             return redirect(login)
         except:
             messages.warning(req, "Email Already Exits , Try Another Email.")
