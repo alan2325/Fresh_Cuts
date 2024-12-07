@@ -249,12 +249,23 @@ table{
   /* margin-top: 100px; */
   margin-left: 600px;
 }
+#feedbackForm{
+  width:20px;
+  height: 50px;
+  margin-right: 40px;
+  /* margin-top: 100px; */
+  margin-left: 200px;
+}
 
 h3{
   text-align: right;
   color: #C91524;
   margin-right: 300px;
 }
+
+#feedbackForm {
+      display: none; /* Hide feedback form initially */
+    }
 
 /* Responsive */
 @media only screen and (max-width: 992px) {
@@ -291,6 +302,13 @@ h3{
   }
 }
     </style>
+    <script>
+      // JavaScript function to toggle the feedback form visibility
+      function toggleFeedbackForm() {
+        const feedbackForm = document.getElementById("feedbackForm");
+        feedbackForm.style.display = feedbackForm.style.display === "block" ? "none" : "block";
+      }
+    </script>
 </head>
 <body>
 <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -397,26 +415,28 @@ h3{
 });
     </script>
 
-    <div>
-      <h3>Feedback</h3>
-    </div>
+<div>
+  <h3>
+    <a href="javascript:void(0)" onclick="toggleFeedbackForm()">Feedback</a>
+  </h3>
+</div>
 
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <div class="container mt-4">
-    <h1>Feedback</h1>
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-warning alert-dismissible">
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
+<!-- Feedback Form -->
+<div id="feedbackForm" class="container mt-4">
+  <!-- <h1>Feedback</h1> -->
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-warning alert-dismissible">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %}
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <table class="table">
-     
       <tr>
-        <td><label for="message"><b>message</b></label></td>
+        <td><label for="message"><b>Message</b></label></td>
         <td><input type="text" placeholder="Enter message" name="message" id="message" required></td>
       </tr>
       <tr>
@@ -424,17 +444,16 @@ h3{
         <td><input type="number" placeholder="Enter rating" name="rating" id="rating" required></td>
       </tr>
       <tr>
-        <td><label for="submitted_at"><b>submitted_at</b></label></td>
-        <td><input type="datetime" placeholder="Enter date" name="submitted_at" id="submitted_at" required></td>
+        <td><label for="submitted_at"><b>Submitted At</b></label></td>
+        <td><input type="datetime-local" name="submitted_at" id="submitted_at" required></td>
       </tr>
-    </div>
-    <tr><td>
-    <button class="btn btn-primary " type="submit">submit</button>
-    </td>
-  </tr>
-  </table>
-  </div>
-</form>
+      <tr>
+        <td colspan="2" class="text-center">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </td>
+      </tr>
+    </table>
+  </form>
 
 
 

@@ -171,7 +171,18 @@ nav-link:hover{
 .cart-btn:hover {
   background-color: #64af3d;
 }
+
+#feedbackForm {
+      display: none; /* Hide feedback form initially */
+    }
 </style>
+<script>
+  // JavaScript function to toggle the feedback form visibility
+  function toggleFeedbackForm() {
+    const feedbackForm = document.getElementById("feedbackForm");
+    feedbackForm.style.display = feedbackForm.style.display === "block" ? "none" : "block";
+  }
+</script>
 </head>
 <body>
   <nav id="nav" class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
@@ -247,8 +258,14 @@ nav-link:hover{
       <a href="../edit/{{data.pk}}" class="cart-btn">Edit</a>
       <a href="../delete/{{data.pk}}" class="cart-btn">Delete</a>
     </div>
+
     <div>
-      <h4>Feedback</h4>
+      <h3>
+        <a href="javascript:void(0)" onclick="toggleFeedbackForm()">Feedback</a>
+      </h3>
+    </div>
+    <div id="feedbackForm" class="container mt-4">
+      <!-- <h4>Feedback</h4> -->
       {% for i in feedback %}
       <p>Message: {{ i.message }}</p>
       <!-- <p>Rating: {{ i.rating }}</p> -->
