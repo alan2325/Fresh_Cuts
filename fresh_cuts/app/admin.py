@@ -8,6 +8,8 @@ admin.site.register(cart)
 admin.site.register(Buy)
 admin.site.register(Product_quantity)
 admin.site.register(Category)
+admin.site.register(Register)
+
 @admin.register(Feedback)
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = ('user', 'message', 'rating', 'submitted_at')
