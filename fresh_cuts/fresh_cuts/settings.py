@@ -132,7 +132,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587  # or your SMTP server port
 EMAIL_USE_TLS = True  # or False if you're using SSL
 EMAIL_HOST_USER = 'alalkumar06@gmail.com'
-EMAIL_HOST_PASSWORD = 'xgws2325@qdsb2323@xphr23imfo'
+EMAIL_HOST_PASSWORD = 'xgws23@qdsb23xphr@25imfo'
 
-RAZORPAY_KEY_ID = 'rzp_test_iCCcrQuMnwrHPi'
-RAZORPAY_KEY_SECRET = 'eHDmsV1nRm4Lsd1v61774'
+RAZORPAY_KEY_ID = 'rzp_test_YkCy6jA2GFlk5F'
+RAZORPAY_KEY_SECRET = 'daOhxZJLVM1ShIlgGtZdLHYt'

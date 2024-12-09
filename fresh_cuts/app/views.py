@@ -99,12 +99,12 @@ def logout(req):
 def register(req):
 
     if req.method=='POST':
-        name1=req.POST['name']
-        email2=req.POST['Email']
-        phonenumber3=req.POST['phonenumber']
-        location4=req.POST['location']
-        password5=req.POST['password']
-        try:
+            name1=req.POST['name']
+            email2=req.POST['Email']
+            phonenumber3=req.POST['phonenumber']
+            location4=req.POST['location']
+            password5=req.POST['password']
+        # try:
             data=Register.objects.create(name=name1,Email=email2,phonenumber=phonenumber3,location=location4,password=password5)
             data.save()
              # Validate email
@@ -114,7 +114,7 @@ def register(req):
             recipient_list = [email2]
             send_mail(subject, message, from_email, recipient_list,fail_silently=False)
             return redirect(login)
-        except:
+        # except:
             messages.warning(req, "Email Already Exits , Try Another Email.")
     return render(req,'user/register.html')
 
@@ -424,29 +424,69 @@ def pro_search(request):
 def home(request):
     return render(request, "user/payment.html")
 
-def order_payment(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
-        amount = request.POST.get("amount")
+
+def order_payment(request, id):
+    # Fetch the product based on product_id
+        product = Product.objects.get (pk=id)
+
+        name = product.name
+        amount = product.price  # Get price directly from the product
+
+        # Razorpay client setup
         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+
+        # Create Razorpay order
         razorpay_order = client.order.create(
             {"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"}
         )
-        order_id=razorpay_order['id']
+        order_id = razorpay_order["id"]
+
+        # Save the order in the database
         order = Order.objects.create(
-            name=name, amount=amount, provider_order_id=order_id
+            name=name, 
+            amount=amount, 
+            provider_order_id=order_id,
+            product=product
         )
         order.save()
+
         return render(
             request,
             "user/payment.html",
             {
-                "callback_url": "http://" + "127.0.0.1:8000" + "razorpay/callback",
+                "callback_url": "http://" + "127.0.0.1:8000" + "/razorpay/callback",
                 "razorpay_key": settings.RAZORPAY_KEY_ID,
                 "order": order,
+                "product": product,  # Pass product data to the template
             },
         )
-    return render(request, "user/payment.html")
+    #  return render(request, "user/payment.html", {"product": product})
+
+
+
+# def order_payment(request):
+#     if request.method == "POST":
+#         name = request.POST.get("name")
+#         amount = request.POST.get("amount")
+#         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+#         razorpay_order = client.order.create(
+#             {"amount": int(amount) * 100, "currency": "INR", "payment_capture": "1"}
+#         )
+#         order_id=razorpay_order['id']
+#         order = Order.objects.create(
+#             name=name, amount=amount, provider_order_id=order_id
+#         )
+#         order.save()
+#         return render(
+#             request,
+#             "user/payment.html",
+#             {
+#                 "callback_url": "http://" + "127.0.0.1:8000" + "razorpay/callback",
+#                 "razorpay_key": settings.RAZORPAY_KEY_ID,
+#                 "order": order,
+#             },
+#         )
+#     return render(request, "user/payment.html")
 
 
 @csrf_exempt
