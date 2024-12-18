@@ -54,7 +54,7 @@ html, body {
   padding-top: 20px;
   margin-left: -50px;
   padding-bottom: 50px;
- position: absolute;
+  position: absolute;
   left: 0;
   top: 0;
   opacity: 0;
@@ -282,31 +282,43 @@ h3{
     }
 
 
+/* Responsive Design for Medium and Small Screens */
 @media (max-width: 940px) {
   .container {
-    flex-direction: column;
-    margin-top: 60px;
+    margin: top -400px;
+    display: flex;
+    flex-direction: column; /* Stack columns vertically */
+    align-items: center; /* Center-align content */
   }
- 
+
   .left-column,
   .right-column {
-    width: 100%;
+    width: 100%; /* Take full width */
   }
- 
+
   .left-column img {
-    width: 300px;
-    right: 0;
-    top: -65px;
-    left: initial;
+    position: relative; /* Reset positioning */
+    width: 80%; /* Adjust width for better fit */
+    margin: 0 auto; /* Center the image horizontally */
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .right-column {
+    margin-top: 20px; /* Add spacing between the columns */
   }
 }
- 
+
 @media (max-width: 535px) {
   .left-column img {
-    width: 220px;
-    top: -85px;
+    width: 90%; /* Further reduce image size for small screens */
+  }
+
+  .right-column {
+    margin-top: 15px; /* Adjust spacing for smaller screens */
   }
 }
+
     </style>
     <script>
       // JavaScript function to toggle the feedback form visibility
@@ -367,8 +379,6 @@ h3{
  
         <!-- Left Column / Headphones Image -->
         <div class="left-column">
-          <img data-image="black" src="images/black.png" alt="">
-          <img data-image="blue" src="images/blue.png" alt="">
           <img data-image="red" class="active" src="{{data.image.url}}" alt="">
         </div>
        
